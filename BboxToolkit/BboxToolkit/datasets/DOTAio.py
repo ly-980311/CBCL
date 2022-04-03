@@ -52,10 +52,10 @@ def _load_dota_single(imgfile, img_dir, ann_dir, cls2lbl):
 
     imgpath = osp.join(img_dir, imgfile)
     size = Image.open(imgpath).size
-    # txtfile = None if ann_dir is None else osp.join(ann_dir, img_id+'.txt')
-    jsonfile = None if ann_dir is None else osp.join(ann_dir, img_id + '.json')
-    # content = _load_dota_txt(txtfile, cls2lbl)
-    content = _load_dota_json(jsonfile, cls2lbl)
+    txtfile = None if ann_dir is None else osp.join(ann_dir, img_id+'.txt')
+    # jsonfile = None if ann_dir is None else osp.join(ann_dir, img_id + '.json')
+    content = _load_dota_txt(txtfile, cls2lbl)
+    # content = _load_dota_json(jsonfile, cls2lbl)
 
     content.update(dict(width=size[0], height=size[1], filename=imgfile, id=img_id))
     return content
