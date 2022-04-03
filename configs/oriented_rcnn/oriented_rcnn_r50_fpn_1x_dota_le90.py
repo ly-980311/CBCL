@@ -142,7 +142,7 @@ data_root = '/data/wangqx/DOTA1_0/split_ms_dota1_0'
 
 data = dict(
     samples_per_gpu=4,
-    workers_per_gpu=4,
+    workers_per_gpu=1,
     train=dict(pipeline=train_pipeline, version=angle_version),
     val=dict(version=angle_version),
     test=dict(version=angle_version))
