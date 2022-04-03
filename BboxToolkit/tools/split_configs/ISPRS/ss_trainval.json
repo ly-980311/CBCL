@@ -1,0 +1,31 @@
+{
+    "nproc": 10,
+    "load_type": "dota",
+    "img_dirs": [
+        "/dev3/FAIR1M/train/images/"
+    ],
+    "ann_dirs": [
+        "/dev3/liyan/data/FAIR1M/train/annotations/"
+    ],
+    "classes": "ISPRS",
+    "prior_annfile": null,
+    "merge_type": "addition",
+    "sizes": [
+        1024
+    ],
+    "gaps": [
+        500
+    ],
+    "rates": [
+        1.0
+    ],
+    "img_rate_thr": 0.6,
+    "iof_thr": 0.7,
+    "no_padding": false,
+    "padding_value": [
+        104, 116, 124
+    ],
+    "filter_empty": true,
+    "save_dir": "/dev3/liyan/data/FAIR1M/split/trainval/",
+    "save_ext": ".png"
+}
