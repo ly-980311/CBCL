@@ -1,12 +1,12 @@
 pi = 3.141592
 from .datasets import *
-import BboxToolkit.BboxToolkit.datasets
+import BboxToolkit.datasets
 
 from .visualization import *
-import BboxToolkit.BboxToolkit.visualization
+import BboxToolkit.visualization
 
 from .evaluation import *
-import BboxToolkit.BboxToolkit.evaluation
+import BboxToolkit.evaluation
 
 from .utils import (get_bbox_type, get_bbox_dim, choice_by_type,
                     regular_theta, regular_obb)
