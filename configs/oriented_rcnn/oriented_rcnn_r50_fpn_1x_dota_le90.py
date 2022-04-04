@@ -141,12 +141,24 @@ train_pipeline = [
 data_root = '/data/wangqx/DOTA1_0/split_ms_dota1_0'
 dataset_type = 'DOTAOBBDataset'
 
-
 data = dict(
     samples_per_gpu=4,
     workers_per_gpu=1,
-    train=dict(pipeline=train_pipeline, version=angle_version),
-    val=dict(version=angle_version),
-    test=dict(version=angle_version))
+    train=dict(
+        type=dataset_type,
+        ann_file=data_root + 'trainval/annfiles/',
+        img_prefix=data_root + 'trainval/images/',
+        pipeline=train_pipeline),
+    val=dict(
+        type=dataset_type,
+        ann_file=data_root + 'trainval/annfiles/',
+        img_prefix=data_root + 'trainval/images/',
+        pipeline=test_pipeline),
+    test=dict(
+        type=dataset_type,
+        ann_file=data_root + 'test/images/',
+        img_prefix=data_root + 'test/images/',
+        pipeline=test_pipeline)
+    )
 
 optimizer = dict(lr=0.005)
