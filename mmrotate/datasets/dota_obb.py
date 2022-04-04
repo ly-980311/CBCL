@@ -53,6 +53,8 @@ class DOTAOBBDataset(CustomDataset):
 
 
     def load_annotations(self, ann_file):
+        import pdb
+        pdb.set_trace()
         split_config = osp.join(ann_file, 'split_config.json')
         self.split_info = mmcv.load(split_config)
 
