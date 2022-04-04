@@ -1,6 +1,6 @@
 import mmcv 
 import os
-datas=mmcv.load(data=mmcv.load('/data/wangqx/DOTA1_0/split_ms_dota1_0/trainval/annfiles/patch_annfile.pkl'))
+datas=mmcv.load('/data/wangqx/DOTA1_0/split_ms_dota1_0/trainval/annfiles/patch_annfile.pkl')
 
 CLASSES=datas['cls']
 save_dir= '/data/wangqx/DOTA1_0/split_ms_dota1_0/trainval/annfile/'
