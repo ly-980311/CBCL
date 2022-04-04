@@ -139,7 +139,7 @@ train_pipeline = [
     dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels'])
 ]
 data_root = '/data/wangqx/DOTA1_0/split_ms_dota1_0'
-dataset_type = 'DOTADataset'
+dataset_type = 'DOTAOBBDataset'
 
 
 data = dict(
