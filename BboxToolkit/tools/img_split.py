@@ -269,7 +269,8 @@ def main():
         sizes += [int(size / rate) for size in args.sizes]
         gaps += [int(gap / rate) for gap in args.gaps]
     save_imgs = osp.join(args.save_dir, 'images')
-    save_files = osp.join(args.save_dir, 'annfiles')
+    save_files = osp.join(args.save_dir, 'annfiles_pkl')
+
     os.makedirs(save_imgs)
     os.makedirs(save_files)
     logger = setup_logger(save_files)
@@ -277,6 +278,7 @@ def main():
     print('Loading original data!!!')
     infos, img_dirs = [], []
     load_func = getattr(bt.datasets, 'load_'+args.load_type)
+
     for img_dir, ann_dir in zip(args.img_dirs, args.ann_dirs):
         print(img_dir)
         _infos, classes = load_func(
@@ -326,6 +328,7 @@ def main():
     arg_dict.pop('base_json', None)
     with open(osp.join(save_files, 'split_config.json'), 'w') as f:
         json.dump(arg_dict, f, indent=4)
+    
     bt.save_pkl(osp.join(save_files, 'ori_annfile.pkl'), infos, classes)
     bt.save_pkl(osp.join(save_files, 'patch_annfile.pkl'), patch_infos, classes)
 
