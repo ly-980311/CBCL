@@ -153,7 +153,7 @@ test_pipeline = [
         ])
 ]
 data_root = '/data/wangqx/DOTA1_0/split_ms_dota1_0/'
-dataset_type = 'DOTAOBBDataset'
+dataset_type = 'DOTADataset'
 
 data = dict(
     samples_per_gpu=4,
