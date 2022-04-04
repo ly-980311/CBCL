@@ -152,7 +152,7 @@ test_pipeline = [
             dict(type='Collect', keys=['img'])
         ])
 ]
-data_root = '/data/wangqx/DOTA1_0/split_ms_dota1_0'
+data_root = '/data/wangqx/DOTA1_0/split_ms_dota1_0/'
 dataset_type = 'DOTAOBBDataset'
 
 data = dict(

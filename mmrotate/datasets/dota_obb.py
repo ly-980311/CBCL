@@ -44,8 +44,7 @@ class DOTAOBBDataset(CustomDataset):
                  **kwargs):
         self.version = version
         self.difficulty = difficulty
-        import pdb
-        pdb.set_trace()
+
         super(DOTAOBBDataset, self).__init__(ann_file, pipeline, **kwargs)
 
     def __len__(self):
