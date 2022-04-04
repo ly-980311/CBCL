@@ -179,4 +179,4 @@ data = dict(
 
 
 optimizer = dict(lr=0.02)
-work_dirs = 'OBB_dotatoolkit'
+work_dir = 'OBB_dotatoolkit'
