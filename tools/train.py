@@ -162,6 +162,8 @@ def main():
     model.init_weights()
 
     datasets = [build_dataset(cfg.data.train)]
+    import pdb
+    pdb.set_trace()
     if len(cfg.workflow) == 2:
         val_dataset = copy.deepcopy(cfg.data.val)
         val_dataset.pipeline = cfg.data.train.pipeline
