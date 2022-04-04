@@ -156,8 +156,8 @@ data_root = '/data/wangqx/DOTA1_0/split_ms_dota1_0/'
 dataset_type = 'DOTADataset'
 
 data = dict(
-    samples_per_gpu=4,
-    workers_per_gpu=4,
+    samples_per_gpu=8,
+    workers_per_gpu=8,
     train=dict(
         type=dataset_type,
         ann_file=data_root + 'trainval/annfile/',
@@ -175,4 +175,4 @@ data = dict(
         pipeline=test_pipeline)
     )
 
-optimizer = dict(lr=0.005)
+optimizer = dict(lr=0.04)
