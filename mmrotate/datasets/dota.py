@@ -289,7 +289,7 @@ class DOTADataset(CustomDataset):
 
         return files
 
-    def format_results(self, results, submission_dir=None, nproc=4, **kwargs):
+    def format_results(self, results, submission_dir='dota_result', nproc=4, **kwargs):
         """Format the results to submission text (standard format for DOTA
         evaluation).
 
