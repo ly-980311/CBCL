@@ -9,6 +9,8 @@ if not os.path.exists(save_dir):
     os.makedirs(save_dir)
 
 for json_name in os.listdir(json_dir):
+    import pdb
+    pdb.set_trace()
     json_data=json.loads(json_name)['shapes']
     txt_name=json_name.replace('json','txt')
     with open(os.path.join(save_dir,txt_name),'w') as f:
