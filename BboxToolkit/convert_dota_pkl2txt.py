@@ -4,7 +4,7 @@ datas=mmcv.load('/data/wangqx/DOTA1_0/split_ms_dota1_0/trainval/annfiles/patch_a
 
 CLASSES=datas['cls']
 save_dir= '/data/wangqx/DOTA1_0/split_ms_dota1_0/trainval/annfile/'
-if not os.path.exists():
+if not os.path.exists(save_dir):
     os.makedirs(save_dir)
 for data in datas['content']:
     file_name_txt=data['filename'].replace('.png','.txt')
