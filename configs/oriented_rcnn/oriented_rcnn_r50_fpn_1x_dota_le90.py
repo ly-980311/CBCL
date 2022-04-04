@@ -175,4 +175,4 @@ data = dict(
         pipeline=test_pipeline)
     )
 
-optimizer = dict(lr=0.04)
+optimizer = dict(lr=0.02)
