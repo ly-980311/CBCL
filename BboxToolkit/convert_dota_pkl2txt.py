@@ -9,7 +9,7 @@ if not os.path.exists(save_dir):
 for data in datas['content']:
     file_name_txt=data['filename'].replace('.png','.txt')
     with open(os.path.join(save_dir,file_name_txt),'w') as f:
-        for i in len(data['ann']['labels']):
+        for i in range(len(data['ann']['labels'])):
             x1=int(data['ann']['bboxes'][i][0])
             y1=int(data['ann']['bboxes'][i][1])
             x2=int(data['ann']['bboxes'][i][2])
