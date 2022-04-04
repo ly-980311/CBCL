@@ -152,8 +152,10 @@ test_pipeline = [
             dict(type='Collect', keys=['img'])
         ])
 ]
+
 data_root = '/data/wangqx/DOTA1_0/split_ms_dota1_0/'
 dataset_type = 'DOTADataset'
+
 
 data = dict(
     samples_per_gpu=8,
@@ -174,5 +176,6 @@ data = dict(
         img_prefix=data_root + 'test/images/',
         pipeline=test_pipeline)
     )
+
 
 optimizer = dict(lr=0.02)
