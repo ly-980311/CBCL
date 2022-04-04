@@ -49,6 +49,8 @@ class DOTAOBBDataset(CustomDataset):
 
     def __len__(self):
         """Total number of samples of data."""
+        import pdb
+        pdb.set_trace()
         return len(self.data_infos)
 
 
