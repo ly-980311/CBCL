@@ -313,7 +313,7 @@ class ISPRSDataset(CustomDataset):
 
                 node_possible_result = doc.createElement('possibleresult')
                 node_name = doc.createElement('name')
-                node_name.appendChild(doc.createTextNode(in_dicts[cls_name]))
+                node_name.appendChild(doc.createTextNode(cls_name))
                 node_possible_result.appendChild(node_name)
                 node_object.appendChild(node_possible_result)
 
