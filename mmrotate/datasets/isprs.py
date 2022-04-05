@@ -321,9 +321,8 @@ class ISPRSDataset(CustomDataset):
 
                 for j in range(4):
                     node_point = doc.createElement('point')
-                    import pdb
-                    pdb.set_trace()
-                    text = '{},{}'.format(in_dicts[cls_name][i][int(0+2*j)], in_dicts['labels'][cls_name][i][int(1+2*j)])
+                    
+                    text = '{},{}'.format(in_dicts[cls_name][i][int(0+2*j)], in_dicts[cls_name][i][int(1+2*j)])
                     node_point.appendChild(doc.createTextNode(text))
                     node_points.appendChild(node_point)
                     
