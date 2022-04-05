@@ -5,6 +5,7 @@ import os.path as osp
 import re
 import tempfile
 import time
+from venv import create
 import zipfile
 from collections import defaultdict
 from functools import partial
@@ -18,7 +19,8 @@ from mmdet.datasets.custom import CustomDataset
 from mmrotate.core import obb2poly_np, poly2obb_np
 from mmrotate.core.evaluation import eval_rbbox_map
 from .builder import ROTATED_DATASETS
-
+from xml.dom.minidom import Document
+from PIL import Image
 
 @ROTATED_DATASETS.register_module()
 class ISPRSDataset(CustomDataset):
@@ -48,7 +50,11 @@ class ISPRSDataset(CustomDataset):
     'ARJ21', 'C919', 'A220', 'A321', 'A330', 'A350', 
     'other-airplane', 'Baseball-Field', 'Basketball-Court',
     'Football-Field', 'Tennis-Court', 'Roundabout', 'Intersection', 'Bridge')
-               
+    
+    alias_dict={}
+    for i in range(len(CLASSES)):
+        alias_dict.update({CLASSES[i]:ori_cls[i]})
+
     def __init__(self,
                  ann_file,
                  pipeline,
@@ -263,6 +269,79 @@ class ISPRSDataset(CustomDataset):
 
         return zip(*merged_results)
 
+
+    def create_xml(img_id, in_dicts, out_path):
+        doc = Document()
+        root = doc.createElement('annotation')
+        doc.appendChild(root)
+        source_list = {'filename':img_id+'.tif', 'origin': 'GF2/GF3'}
+        node_source = doc.createElement('source')
+        for source in source_list:
+            node_name = doc.createElement(source)
+            node_name.appendChild(doc.createTextNode(source_list[source]))
+            node_source.appendChild(node_name)
+        root.appendChild(node_source)
+
+        research_list = {'version': '1.0', 'provider': 'FAIR1M', 'author': 'Cyber',
+                        'pluginname': 'FAIR1M', 'pluginclass': 'object detection', 'time': '2021-07-21'}
+        node_research = doc.createElement('research')
+        for research in research_list:
+            node_name = doc.createElement(research)
+            node_name.appendChild(doc.createTextNode(research_list[research]))
+            node_research.appendChild(node_name)
+        root.appendChild(node_research)
+
+        img = Image.open(os.path.join('../FAIR1M/test/images',img_id+'.tif'))
+        size_list = {'width': str(img.size[0]), 'height': str(img.size[1]), 'depth': '3'}
+        node_size = doc.createElement('size')
+        for size in size_list:
+            node_name = doc.createElement(size)
+            node_name.appendChild(doc.createTextNode(size_list[size]))
+            node_size.appendChild(node_name)
+        root.appendChild(node_size)
+
+        node_objects = doc.createElement('objects')
+        for cls_name in in_dicts.keys():
+
+            for i in len(in_dicts[cls_name]):
+                node_object = doc.createElement('object')
+                object_fore_list = {'coordinate': 'pixel', 'type': 'rectangle', 'description': 'None'}
+                for object_fore in object_fore_list:
+                    node_name = doc.createElement(object_fore)
+                    node_name.appendChild(doc.createTextNode(object_fore_list[object_fore]))
+                    node_object.appendChild(node_name)
+
+                node_possible_result = doc.createElement('possibleresult')
+                node_name = doc.createElement('name')
+                node_name.appendChild(doc.createTextNode(in_dicts[cls_name]))
+                node_possible_result.appendChild(node_name)
+                node_object.appendChild(node_possible_result)
+
+                node_points = doc.createElement('points')
+
+                for j in range(4):
+                    node_point = doc.createElement('point')
+                    text = '{},{}'.format(in_dicts[cls_name][i][0+2*j], in_dicts['labels'][cls_name][i][1+2*j])
+                    node_point.appendChild(doc.createTextNode(text))
+                    node_points.appendChild(node_point)
+                    
+                node_point = doc.createElement('point')
+                text = '{},{}'.format(in_dicts['labels'][i]['points'][0][0], in_dicts['labels'][i]['points'][0][1])
+                node_point.appendChild(doc.createTextNode(text))
+                node_points.appendChild(node_point)
+                node_object.appendChild(node_points)
+
+                node_objects.appendChild(node_object)
+        root.appendChild(node_objects)
+
+        # 开始写xml文档
+        filename = out_path + img_id + '.xml'
+        fp = open(filename, 'w', encoding='utf-8')
+        doc.writexml(fp, indent='', addindent='\t', newl='\n', encoding="utf-8")
+        fp.close()
+
+
+
     def _results2submission(self, id_list, dets_list, out_folder=None):
         """Generate the submission of full images.
 
@@ -276,32 +355,18 @@ class ISPRSDataset(CustomDataset):
                              f'but {out_folder} is existing')
         os.makedirs(out_folder)
 
-        files = [
-            osp.join(out_folder, 'Task1_' + cls + '.txt')
-            for cls in self.CLASSES
-        ]
-        file_objs = [open(f, 'w') for f in files]
+
         for img_id, dets_per_cls in zip(id_list, dets_list):
-            for f, dets in zip(file_objs, dets_per_cls):
+            result_dict={}
+            for cls_name, dets in zip(self.CLASSES, dets_per_cls):
                 if dets.size == 0:
                     continue
                 bboxes = obb2poly_np(dets, self.version)
-                for bbox in bboxes:
-                    txt_element = [img_id, str(bbox[-1])
-                                   ] + [f'{p:.2f}' for p in bbox[:-1]]
-                    f.writelines(' '.join(txt_element) + '\n')
+                result_dict.update({self.alias_dict[cls_name]:bboxes})
 
-        for f in file_objs:
-            f.close()
+            self.create_xml(img_id,result_dict,out_folder)
 
-        target_name = osp.split(out_folder)[-1]
-        with zipfile.ZipFile(
-                osp.join(out_folder, target_name + '.zip'), 'w',
-                zipfile.ZIP_DEFLATED) as t:
-            for f in files:
-                t.write(f, osp.split(f)[-1])
-
-        return files
+        return None
 
     def format_results(self, results, submission_dir='dota_result', nproc=4, **kwargs):
         """Format the results to submission text (standard format for DOTA
