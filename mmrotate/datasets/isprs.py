@@ -365,7 +365,7 @@ class ISPRSDataset(CustomDataset):
                 result_dict.update({self.alias_dict[cls_name]:bboxes})
 
             self.create_xml(img_id,result_dict,out_folder)
-
+        
         return None
 
     def format_results(self, results, submission_dir='dota_result', nproc=4, **kwargs):
