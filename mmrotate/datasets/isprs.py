@@ -354,7 +354,6 @@ class ISPRSDataset(CustomDataset):
         if not osp.exists(out_folder):
             os.makedirs(out_folder)
 
-
         for img_id, dets_per_cls in zip(id_list, dets_list):
             result_dict={}
             for cls_name, dets in zip(self.CLASSES, dets_per_cls):
