@@ -336,7 +336,7 @@ class ISPRSDataset(CustomDataset):
         root.appendChild(node_objects)
 
         # 开始写xml文档
-        filename = out_path + img_id + '.xml'
+        filename = os.path.join(out_path, img_id + '.xml')
         fp = open(filename, 'w', encoding='utf-8')
         doc.writexml(fp, indent='', addindent='\t', newl='\n', encoding="utf-8")
         fp.close()
@@ -351,10 +351,8 @@ class ISPRSDataset(CustomDataset):
             dets_list (list): Detection results of per class.
             out_folder (str, optional): Folder of submission.
         """
-        if osp.exists(out_folder):
-            raise ValueError(f'The out_folder should be a non-exist path, '
-                             f'but {out_folder} is existing')
-        os.makedirs(out_folder)
+        if not osp.exists(out_folder):
+            os.makedirs(out_folder)
 
 
         for img_id, dets_per_cls in zip(id_list, dets_list):
