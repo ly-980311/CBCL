@@ -1,4 +1,4 @@
-_base_ = ['../r3det/r3det_r50_fpn_1x_dota_oc.py']
+_base_ = ['../oriented_rcnn/oriented_rcnn_r50_fpn_3x_isprs_le90.py']
 
 angle_version = 'oc'
 model = dict(
@@ -56,29 +56,5 @@ model = dict(
                 loss_weight=1.0),
             loss_bbox=dict(type='KFLoss', fun='ln', loss_weight=5.0))
     ])
-data_root = '/data/wangqx/FAIR1M/split_ms/'
-dataset_type = 'ISPRSDataset'
-
-data = dict(
-    samples_per_gpu=8,
-    workers_per_gpu=8,
-    train=dict(
-        type=dataset_type,
-        ann_file=data_root + 'train/annfiles/',
-        img_prefix=data_root + 'train/images/',
-        pipeline=train_pipeline),
-    val=dict(
-        type=dataset_type,
-        ann_file=data_root + 'train/annfiles/',
-        img_prefix=data_root + 'train/images/',
-        pipeline=test_pipeline),
-    test=dict(
-        type=dataset_type,
-        ann_file=data_root + 'test/images/',
-        img_prefix=data_root + 'test/images/',
-        pipeline=test_pipeline)
-    )
-
-
-optimizer = dict(lr=0.02)
+    
 work_dir = 'work_dirs/ISPRS_KFIOU'
