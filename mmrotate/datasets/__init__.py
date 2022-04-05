@@ -4,6 +4,6 @@ from .dota import DOTADataset  # noqa: F401, F403
 from .hrsc import HRSCDataset  # noqa: F401, F403
 from .pipelines import *  # noqa: F401, F403
 from .sar import SARDataset  # noqa: F401, F403
-from .dota_obb import DOTAOBBDataset
+from .isprs import ISPRSDataset
 
-__all__ = ['SARDataset', 'DOTADataset', 'build_dataset', 'HRSCDataset','DOTAOBBDataset']
+__all__ = ['SARDataset', 'DOTADataset', 'build_dataset', 'HRSCDataset','ISPRSDataset']
