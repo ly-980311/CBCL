@@ -336,7 +336,8 @@ class ISPRSDataset(CustomDataset):
         id_list, dets_list = self.merge_det(results, nproc)
         stop_time = time.time()
         print(f'Used time: {(stop_time - start_time):.1f} s')
-
+        import pdb
+        pdb.set_trace()
         result_files = self._results2submission(id_list, dets_list,
                                                 submission_dir)
 
