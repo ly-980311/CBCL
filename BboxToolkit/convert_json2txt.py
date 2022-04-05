@@ -2,8 +2,8 @@ import mmcv
 import os
 import json
 
-json_dir='../mmdetection_school/FAIR1M/annotations/'
-save_dir= '../mmdetection_school/FAIR1M/annotations_txt'
+json_dir='../FAIR1M/annotations/'
+save_dir= '../FAIR1M/annotations_txt'
 
 if not os.path.exists(save_dir):
     os.makedirs(save_dir)
