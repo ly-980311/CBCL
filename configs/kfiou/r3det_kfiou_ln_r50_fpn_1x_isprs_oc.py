@@ -5,7 +5,7 @@ model = dict(
     bbox_head=dict(
         _delete_=True,
         type='KFIoURRetinaHead',
-        num_classes=15,
+        num_classes=37,
         in_channels=256,
         stacked_convs=4,
         feat_channels=256,
@@ -90,8 +90,8 @@ test_pipeline = [
 ]
 
 data = dict(
-    samples_per_gpu=8,
-    workers_per_gpu=8,
+    samples_per_gpu=6,
+    workers_per_gpu=6,
     train=dict(
         type=dataset_type,
         ann_file=data_root + 'train/annfiles/',
