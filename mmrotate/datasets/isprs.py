@@ -303,7 +303,7 @@ class ISPRSDataset(CustomDataset):
         node_objects = doc.createElement('objects')
         for cls_name in in_dicts.keys():
 
-            for i in len(in_dicts[cls_name]):
+            for i in in_dicts[cls_name]:
                 node_object = doc.createElement('object')
                 object_fore_list = {'coordinate': 'pixel', 'type': 'rectangle', 'description': 'None'}
                 for object_fore in object_fore_list:
