@@ -33,7 +33,7 @@ model = dict(
     refine_heads=[
         dict(
             type='KFIoURRetinaRefineHead',
-            num_classes=15,
+            num_classes=37,
             in_channels=256,
             stacked_convs=4,
             feat_channels=256,
