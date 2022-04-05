@@ -1,7 +1,7 @@
 {
   "nproc": 10,
   "img_dirs": [
-    "../DOTA1_0/test/images/"
+    "../FAIR1M/test/images/"
   ],
   "ann_dirs": null,
   "sizes": [
@@ -22,7 +22,7 @@
     104,
     116,
     124
-  ],
-  "save_dir": "../DOTA1_0/split_ms_dota1_0/test/",
+  ],   
+  "save_dir": "../FAIR1M/split_ms/test/",
   "save_ext": ".png"
 }
