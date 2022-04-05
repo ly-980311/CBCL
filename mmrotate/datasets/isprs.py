@@ -30,10 +30,24 @@ class ISPRSDataset(CustomDataset):
         version (str, optional): Angle representations. Defaults to 'oc'.
         difficulty (bool, optional): The difficulty threshold of GT.
     """
-    CLASSES = ('plane', 'baseball-diamond', 'bridge', 'ground-track-field',
-               'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
-               'basketball-court', 'storage-tank', 'soccer-ball-field',
-               'roundabout', 'harbor', 'swimming-pool', 'helicopter')
+    ori_cls=('Passenger Ship', 'Motorboat', 'Fishing Boat',
+    'Tugboat', 'other-ship', 'Engineering Ship', 'Liquid Cargo Ship', 
+    'Dry Cargo Ship', 'Warship', 'Small Car', 'Bus', 'Cargo Truck', 
+    'Dump Truck', 'other-vehicle', 'Van', 'Trailer', 'Tractor', 
+    'Excavator', 'Truck Tractor', 'Boeing737', 'Boeing747', 
+    'Boeing777', 'Boeing787', 'ARJ21', 'C919', 'A220', 'A321', 
+    'A330', 'A350', 'other-airplane', 'Baseball Field', 'Basketball Court', 
+    'Football Field', 'Tennis Court', 'Roundabout', 'Intersection', 'Bridge')
+    
+    CLASSES = ('Passenger-Ship', 'Motorboat', 'Fishing-Boat', 
+    'Tugboat', 'other-ship', 'Engineering-Ship', 'Liquid-Cargo-Ship',
+    'Dry-Cargo-Ship', 'Warship', 'Small-Car', 'Bus', 
+    'Cargo-Truck', 'Dump-Truck', 'other-vehicle', 'Van', 
+    'Trailer', 'Tractor', 'Excavator', 'Truck-Tractor', 
+    'Boeing737', 'Boeing747', 'Boeing777', 'Boeing787', 
+    'ARJ21', 'C919', 'A220', 'A321', 'A330', 'A350', 
+    'other-airplane', 'Baseball-Field', 'Basketball-Court',
+    'Football-Field', 'Tennis-Court', 'Roundabout', 'Intersection', 'Bridge')
                
     def __init__(self,
                  ann_file,
