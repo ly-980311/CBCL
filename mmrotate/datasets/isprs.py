@@ -270,7 +270,7 @@ class ISPRSDataset(CustomDataset):
         return zip(*merged_results)
 
 
-    def create_xml(img_id, in_dicts, out_path):
+    def create_xml(self, img_id, in_dicts, out_path):
         doc = Document()
         root = doc.createElement('annotation')
         doc.appendChild(root)
@@ -401,8 +401,7 @@ class ISPRSDataset(CustomDataset):
         id_list, dets_list = self.merge_det(results, nproc)
         stop_time = time.time()
         print(f'Used time: {(stop_time - start_time):.1f} s')
-        import pdb
-        pdb.set_trace()
+
         result_files = self._results2submission(id_list, dets_list,
                                                 submission_dir)
 
