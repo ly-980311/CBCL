@@ -17,7 +17,7 @@ model = dict(
         style='pytorch',
         init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50'),
         dcn=dict(type='DCNv2', deformable_groups=1, fallback_on_stride=False),
-        stage_with_dcn=(False, True, True, True)
+        stage_with_dcn=(False, True, True, True),
         ),
 
     neck=dict(
