@@ -38,7 +38,7 @@ class ISPRSAIRDataset(CustomDataset):
     
     CLASSES = ('Boeing737', 'Boeing747', 'Boeing777', 'Boeing787', 
     'ARJ21', 'C919', 'A220', 'A321', 'A330', 'A350', 
-    'other-airplane's)
+    'other-airplane')
     
     alias_dict={}
     for i in range(len(CLASSES)):
