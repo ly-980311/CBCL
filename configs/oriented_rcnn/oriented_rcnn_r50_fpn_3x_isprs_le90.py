@@ -19,7 +19,7 @@ model = dict(
         dcn=dict(type='DCNv2', deformable_groups=1, fallback_on_stride=False),
         stage_with_dcn=(False, True, True, True)
         ),
-        
+
     neck=dict(
         type='FPN',
         in_channels=[256, 512, 1024, 2048],
@@ -183,4 +183,4 @@ data = dict(
 
 
 optimizer = dict(lr=0.02)
-work_dir = 'work_dirs/ISPRS'
+work_dir = 'work_dirs/ISPRS_dcn'
