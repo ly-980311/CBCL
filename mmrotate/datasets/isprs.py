@@ -305,40 +305,40 @@ class ISPRSDataset(CustomDataset):
 
             for i in range(len(in_dicts[cls_name])):
 
-                # if in_dicts[cls_name][i][8]>0.3:
-                node_object = doc.createElement('object')
-                object_fore_list = {'coordinate': 'pixel', 'type': 'rectangle', 'description': 'None'}
-                for object_fore in object_fore_list:
-                    node_name = doc.createElement(object_fore)
-                    node_name.appendChild(doc.createTextNode(object_fore_list[object_fore]))
-                    node_object.appendChild(node_name)
+                if in_dicts[cls_name][i][8]>0.2:
+                    node_object = doc.createElement('object')
+                    object_fore_list = {'coordinate': 'pixel', 'type': 'rectangle', 'description': 'None'}
+                    for object_fore in object_fore_list:
+                        node_name = doc.createElement(object_fore)
+                        node_name.appendChild(doc.createTextNode(object_fore_list[object_fore]))
+                        node_object.appendChild(node_name)
 
-                node_possible_result = doc.createElement('possibleresult')
-                node_name = doc.createElement('name')
-                node_name.appendChild(doc.createTextNode(cls_name))
-                node_possible_result.appendChild(node_name)
+                    node_possible_result = doc.createElement('possibleresult')
+                    node_name = doc.createElement('name')
+                    node_name.appendChild(doc.createTextNode(cls_name))
+                    node_possible_result.appendChild(node_name)
 
-                node_probability = doc.createElement('probability')
-                node_probability.appendChild(doc.createTextNode(str(in_dicts[cls_name][i][8])))
-                node_possible_result.appendChild(node_probability)
+                    node_probability = doc.createElement('probability')
+                    node_probability.appendChild(doc.createTextNode(str(in_dicts[cls_name][i][8])))
+                    node_possible_result.appendChild(node_probability)
 
-                node_object.appendChild(node_possible_result)
+                    node_object.appendChild(node_possible_result)
 
-                node_points = doc.createElement('points')
+                    node_points = doc.createElement('points')
 
-                for j in range(4):
+                    for j in range(4):
+                        node_point = doc.createElement('point')
+
+                        text = '{},{}'.format(in_dicts[cls_name][i][int(0+2*j)], in_dicts[cls_name][i][int(1+2*j)])
+                        node_point.appendChild(doc.createTextNode(text))
+                        node_points.appendChild(node_point)
+                        
                     node_point = doc.createElement('point')
-
-                    text = '{},{}'.format(in_dicts[cls_name][i][int(0+2*j)], in_dicts[cls_name][i][int(1+2*j)])
+                    text = '{},{}'.format(in_dicts[cls_name][i][0], in_dicts[cls_name][i][1])
                     node_point.appendChild(doc.createTextNode(text))
                     node_points.appendChild(node_point)
-                    
-                node_point = doc.createElement('point')
-                text = '{},{}'.format(in_dicts[cls_name][i][0], in_dicts[cls_name][i][1])
-                node_point.appendChild(doc.createTextNode(text))
-                node_points.appendChild(node_point)
-                node_object.appendChild(node_points)
-                node_objects.appendChild(node_object)
+                    node_object.appendChild(node_points)
+                    node_objects.appendChild(node_object)
 
         root.appendChild(node_objects)
 
