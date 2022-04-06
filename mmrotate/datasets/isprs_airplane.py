@@ -110,10 +110,10 @@ class ISPRSAIRDataset(CustomDataset):
                             continue
                         try:
                             cls_name = bbox_info[8]
-                        except:  # noqa: E722
+                            difficulty = int(bbox_info[9])
+                            label = cls_map[cls_name]
+                        except:
                             continue
-                        difficulty = int(bbox_info[9])
-                        label = cls_map[cls_name]
                         if difficulty > self.difficulty:
                             pass
                         else:
