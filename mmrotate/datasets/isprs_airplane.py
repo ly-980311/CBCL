@@ -101,12 +101,17 @@ class ISPRSAIRDataset(CustomDataset):
                     s = f.readlines()
                     for si in s:
                         bbox_info = si.split()
+
+                        
                         poly = np.array(bbox_info[:8], dtype=np.float32)
                         try:
                             x, y, w, h, a = poly2obb_np(poly, self.version)
                         except:  # noqa: E722
                             continue
-                        cls_name = bbox_info[8]
+                        try:
+                            cls_name = bbox_info[8]
+                        except:  # noqa: E722
+                            continue
                         difficulty = int(bbox_info[9])
                         label = cls_map[cls_name]
                         if difficulty > self.difficulty:
