@@ -373,7 +373,7 @@ class ISPRSDataset(CustomDataset):
 
         return None
 
-    def format_results(self, results, submission_dir='isprs_result', nproc=4, **kwargs):
+    def format_results(self, results, submission_dir='test', nproc=4, **kwargs):
         """Format the results to submission text (standard format for DOTA
         evaluation).
 
