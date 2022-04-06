@@ -304,6 +304,8 @@ class ISPRSDataset(CustomDataset):
         for cls_name in in_dicts.keys():
 
             for i in range(len(in_dicts[cls_name])):
+
+                # if in_dicts[cls_name][i][8]>0.3:
                 node_object = doc.createElement('object')
                 object_fore_list = {'coordinate': 'pixel', 'type': 'rectangle', 'description': 'None'}
                 for object_fore in object_fore_list:
@@ -315,6 +317,11 @@ class ISPRSDataset(CustomDataset):
                 node_name = doc.createElement('name')
                 node_name.appendChild(doc.createTextNode(cls_name))
                 node_possible_result.appendChild(node_name)
+
+                node_probability = doc.createElement('probability')
+                node_probability.appendChild(doc.createTextNode(str(in_dicts[cls_name][i][8])))
+                node_possible_result.appendChild(node_probability)
+
                 node_object.appendChild(node_possible_result)
 
                 node_points = doc.createElement('points')
@@ -331,8 +338,8 @@ class ISPRSDataset(CustomDataset):
                 node_point.appendChild(doc.createTextNode(text))
                 node_points.appendChild(node_point)
                 node_object.appendChild(node_points)
-
                 node_objects.appendChild(node_object)
+
         root.appendChild(node_objects)
 
         # 开始写xml文档
