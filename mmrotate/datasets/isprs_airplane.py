@@ -309,6 +309,10 @@ class ISPRSAIRDataset(CustomDataset):
                 node_name = doc.createElement('name')
                 node_name.appendChild(doc.createTextNode(cls_name))
                 node_possible_result.appendChild(node_name)
+                node_probability = doc.createElement('probability')
+                node_probability.appendChild(doc.createTextNode(str(in_dicts[cls_name][i][8])))
+                node_possible_result.appendChild(node_probability)
+
                 node_object.appendChild(node_possible_result)
 
                 node_points = doc.createElement('points')
@@ -360,7 +364,7 @@ class ISPRSAIRDataset(CustomDataset):
 
         return None
 
-    def format_results(self, results, submission_dir='isprs_result', nproc=4, **kwargs):
+    def format_results(self, results, submission_dir='test', nproc=4, **kwargs):
         """Format the results to submission text (standard format for DOTA
         evaluation).
 
