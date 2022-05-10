@@ -10,10 +10,6 @@ from mmdet.models.utils import build_linear_layer
 
 from mmrotate.core import build_bbox_coder, multiclass_nms_rotated
 from ...builder import ROTATED_HEADS, build_loss
-from ...dense_heads.large_batch_queue import Large_batch_queue
-from ...dense_heads.triplet_loss_batch import TripletLossbatch
-from ...dense_heads.large_batch_queue_classwise import Large_batch_queue_classwise
-from ...dense_heads.triplet_loss_batch_classwise import TripletLossbatch_classwise
 
 
 @ROTATED_HEADS.register_module()
@@ -82,8 +78,6 @@ class RotatedBBoxHead(BaseModule):
         self.loss_cls = build_loss(loss_cls)
         self.loss_bbox = build_loss(loss_bbox)
 
-        # self.bn_neck=nn.BatchNorm1d(1024)
-
         in_channels = self.in_channels
         if self.with_avg_pool:
             self.avg_pool = nn.AvgPool2d(self.roi_feat_size)
@@ -118,13 +112,6 @@ class RotatedBBoxHead(BaseModule):
                     dict(
                         type='Normal', std=0.001, override=dict(name='fc_reg'))
                 ]
-        # self.large_batch_queue=Large_batch_queue(num_classes=37,number_of_instance=64, feat_len=1024)
-        self.large_batch_queue=Large_batch_queue_classwise(num_classes=37,number_of_instance=16, feat_len=1024)
-
-        # self.large_batch_queue=Large_batch_queue(num_classes=37,number_of_instance=16).cuda()
-        # self.loss_batch_tri = TripletLossbatch()
-        self.loss_batch_tri = TripletLossbatch_classwise(num_classes=37)
-
 
     @property
     def custom_cls_channels(self):
@@ -147,7 +134,6 @@ class RotatedBBoxHead(BaseModule):
         if self.with_avg_pool:
             x = self.avg_pool(x)
         x = x.view(x.size(0), -1)
-
         cls_score = self.fc_cls(x) if self.with_cls else None
         bbox_pred = self.fc_reg(x) if self.with_reg else None
         return cls_score, bbox_pred
@@ -289,7 +275,6 @@ class RotatedBBoxHead(BaseModule):
     def loss(self,
              cls_score,
              bbox_pred,
-             bbox_feats,
              rois,
              labels,
              label_weights,
@@ -324,29 +309,12 @@ class RotatedBBoxHead(BaseModule):
         if cls_score is not None:
             avg_factor = max(torch.sum(label_weights > 0).float().item(), 1.)
             if cls_score.numel() > 0:
-                
                 loss_cls_ = self.loss_cls(
                     cls_score,
                     labels,
                     label_weights,
                     avg_factor=avg_factor,
                     reduction_override=reduction_override)
-                
-                pos_feats = bbox_feats[labels!=self.num_classes]
-                # pos_feats = F.normalize(pos_feats,dim=1)
-                # pos_feats = self.bn_neck(pos_feats)
-                # pos_feats = F.normalize(torch.mean(pos_feats,dim=[2,3]),dim=1)
-                pos_labels = labels[labels!=self.num_classes]
-
-                # large_batch_queue,queue_label = self.large_batch_queue(pos_feats, pos_labels)
-                # loss_batch_tri=self.loss_batch_tri(pos_feats, pos_labels,large_batch_queue,queue_label)
-                # device = pos_labelc
-                
-                large_batch_queue = self.large_batch_queue(pos_feats, pos_labels)
-                loss_batch_tri=self.loss_batch_tri(pos_feats, pos_labels,large_batch_queue)
-
-                losses['loss_triplet'] = loss_batch_tri
-
                 if isinstance(loss_cls_, dict):
                     losses.update(loss_cls_)
                 else:
@@ -356,7 +324,6 @@ class RotatedBBoxHead(BaseModule):
                     losses.update(acc_)
                 else:
                     losses['acc'] = accuracy(cls_score, labels)
-
         if bbox_pred is not None:
             bg_class_ind = self.num_classes
             # 0~self.num_classes-1 are FG, self.num_classes is BG
