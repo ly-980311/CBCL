@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+	<source>
+		<filename>962.tif</filename>
+		<origin>GF2/GF3</origin>
+	</source>
+	<research>
+		<version>1.0</version>
+		<provider>FAIR1M</provider>
+		<author>Cyber</author>
+		<pluginname>FAIR1M</pluginname>
+		<pluginclass>object detection</pluginclass>
+		<time>2021-07-21</time>
+	</research>
+	<size>
+		<width>600</width>
+		<height>800</height>
+		<depth>3</depth>
+	</size>
+	<objects>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>A220</name>
+				<probability>0.064774289727211</probability>
+			</possibleresult>
+			<points>
+				<point>590.7364208355342,189.44310731932615</point>
+				<point>652.5765909101029,150.02167494940204</point>
+				<point>691.7251270160283,211.43375425293948</point>
+				<point>629.8849569414596,250.85518662286358</point>
+				<point>590.7364208355342,189.44310731932615</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>A350</name>
+				<probability>0.051013339310884476</probability>
+			</possibleresult>
+			<points>
+				<point>85.9157531584314,662.4333546301314</point>
+				<point>179.0749325796102,653.9922774844003</point>
+				<point>187.2712280427405,744.4499461511186</point>
+				<point>94.1120486215617,752.8910232968497</point>
+				<point>85.9157531584314,662.4333546301314</point>
+			</points>
+		</object>
+	</objects>
+</annotation>

@@ -138,6 +138,24 @@ train_pipeline = [
     dict(type='DefaultFormatBundle'),
     dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels'])
 ]
+
+data_root = '/home/liyan/FAIR1M/split_ms/'
+dataset_type = 'ISPRSAIRDataset'
+
+train_dataset = dict(
+    type='MultiImageMixDataset',
+    dataset=dict(
+        type=dataset_type,
+        ann_file=data_root + 'train/annfiles/',
+        img_prefix=data_root + 'train/images/',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='LoadAnnotations', with_bbox=True)
+        ],
+        filter_empty_gt=False,
+    ),
+    pipeline=train_pipeline)
+
 test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
@@ -153,18 +171,10 @@ test_pipeline = [
         ])
 ]
 
-data_root = '/home/liyan/FAIR1M/split_ms/'
-dataset_type = 'ISPRSAIRDataset'
-
-
 data = dict(
     samples_per_gpu=4,
     workers_per_gpu=4,
-    train=dict(
-        type=dataset_type,
-        ann_file=data_root + 'train/annfiles/',
-        img_prefix=data_root + 'train/images/',
-        pipeline=train_pipeline),
+    train=train_dataset,
     val=dict(
         type=dataset_type,
         ann_file=data_root + 'train/annfiles/',
@@ -178,4 +188,4 @@ data = dict(
     )
 
 optimizer = dict(lr=0.01)
-resume_from = 'work_dirs/orcnn_r50_fpn_ISPRS_3s_airplane/latest.pth'
+resume_from = None

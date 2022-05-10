@@ -98,8 +98,8 @@ class OrientedStandardRoIHead(RotatedStandardRoIHead):
 
         bbox_targets = self.bbox_head.get_targets(sampling_results, gt_bboxes,
                                                   gt_labels, self.train_cfg)
-        loss_bbox = self.bbox_head.loss(bbox_results['cls_score'],
-                                        bbox_results['bbox_pred'], rois,
+        loss_bbox = self.bbox_head.loss(bbox_results['cls_score'],  bbox_results['bbox_pred'], bbox_results['bbox_feats'],
+                                        rois,
                                         *bbox_targets)
 
         bbox_results.update(loss_bbox=loss_bbox)

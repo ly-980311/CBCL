@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+	<source>
+		<filename>2449.tif</filename>
+		<origin>GF2/GF3</origin>
+	</source>
+	<research>
+		<version>1.0</version>
+		<provider>FAIR1M</provider>
+		<author>Cyber</author>
+		<pluginname>FAIR1M</pluginname>
+		<pluginclass>object detection</pluginclass>
+		<time>2021-07-21</time>
+	</research>
+	<size>
+		<width>600</width>
+		<height>800</height>
+		<depth>3</depth>
+	</size>
+	<objects>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>Boeing737</name>
+				<probability>0.07300083339214325</probability>
+			</possibleresult>
+			<points>
+				<point>511.63174315515784,470.2963641888364</point>
+				<point>538.0984885279709,487.1534337082228</point>
+				<point>521.7714550870296,512.7879863971011</point>
+				<point>495.3047097142166,495.9309168777147</point>
+				<point>511.63174315515784,470.2963641888364</point>
+			</points>
+		</object>
+	</objects>
+</annotation>

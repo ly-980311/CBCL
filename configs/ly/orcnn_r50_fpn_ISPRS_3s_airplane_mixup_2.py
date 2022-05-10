@@ -127,6 +127,11 @@ img_norm_cfg = dict(
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
+    dict(
+        type='MixUp',
+        img_scale=(1024, 1024),
+        ratio_range=(0.8, 1.6),
+        pad_val=114.0),
     dict(type='RResize', img_scale=(1024, 1024)),
     dict(
         type='RRandomFlip',

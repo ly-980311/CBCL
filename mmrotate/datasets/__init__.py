@@ -6,5 +6,8 @@ from .pipelines import *  # noqa: F401, F403
 from .sar import SARDataset  # noqa: F401, F403
 from .isprs import ISPRSDataset
 from .isprs_airplane import ISPRSAIRDataset
+from mmdet.datasets.dataset_wrappers import (ClassBalancedDataset, ConcatDataset,
+                                             MultiImageMixDataset, RepeatDataset)
 
-__all__ = ['SARDataset', 'DOTADataset', 'build_dataset', 'HRSCDataset','ISPRSDataset','ISPRSAIRDataset']
+__all__ = ['SARDataset', 'DOTADataset', 'build_dataset', 'HRSCDataset',
+           'ISPRSDataset', 'ISPRSAIRDataset', 'MultiImageMixDataset']

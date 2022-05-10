@@ -15,9 +15,7 @@ model = dict(
         norm_cfg=dict(type='BN', requires_grad=True),
         norm_eval=True,
         style='pytorch',
-        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50'),
-        dcn=dict(type='DCNv2', deformable_groups=1, fallback_on_stride=False),
-        stage_with_dcn=(False, True, True, True)),
+        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50')),
     neck=dict(
         type='FPN',
         in_channels=[256, 512, 1024, 2048],
@@ -58,7 +56,7 @@ model = dict(
             in_channels=256,
             fc_out_channels=1024,
             roi_feat_size=7,
-            num_classes=37,
+            num_classes=11,
             bbox_coder=dict(
                 type='DeltaXYWHAOBBoxCoder',
                 angle_range=angle_version,
@@ -156,7 +154,7 @@ test_pipeline = [
 ]
 
 data_root = '/home/liyan/FAIR1M/split_ms/'
-dataset_type = 'ISPRSDataset'
+dataset_type = 'ISPRSAIRDataset'
 
 
 data = dict(
@@ -179,6 +177,5 @@ data = dict(
         pipeline=test_pipeline)
     )
 
-
 optimizer = dict(lr=0.01)
-# work_dir = 'work_dirs/obb_dota_1_0'
+resume_from = 'work_dirs/orcnn_r50_fpn_ISPRS_3s_airplane/latest.pth'

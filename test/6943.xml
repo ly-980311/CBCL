@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+	<source>
+		<filename>6943.tif</filename>
+		<origin>GF2/GF3</origin>
+	</source>
+	<research>
+		<version>1.0</version>
+		<provider>FAIR1M</provider>
+		<author>Cyber</author>
+		<pluginname>FAIR1M</pluginname>
+		<pluginclass>object detection</pluginclass>
+		<time>2021-07-21</time>
+	</research>
+	<size>
+		<width>800</width>
+		<height>600</height>
+		<depth>3</depth>
+	</size>
+	<objects>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>Boeing747</name>
+				<probability>0.051295921206474304</probability>
+			</possibleresult>
+			<points>
+				<point>79.98282998905027,332.8432496248446</point>
+				<point>159.5175444928587,278.0852813611873</point>
+				<point>214.72346883907474,358.2706419767179</point>
+				<point>135.18875433526634,413.0286102403752</point>
+				<point>79.98282998905027,332.8432496248446</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>other-airplane</name>
+				<probability>0.09126543998718262</probability>
+			</possibleresult>
+			<points>
+				<point>547.7541026149169,428.8421257845212</point>
+				<point>603.4288475066004,387.1128670937158</point>
+				<point>646.2426014866456,444.2345343717288</point>
+				<point>590.5678565949621,485.9637930625342</point>
+				<point>547.7541026149169,428.8421257845212</point>
+			</points>
+		</object>
+	</objects>
+</annotation>

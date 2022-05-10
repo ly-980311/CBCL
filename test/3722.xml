@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+	<source>
+		<filename>3722.tif</filename>
+		<origin>GF2/GF3</origin>
+	</source>
+	<research>
+		<version>1.0</version>
+		<provider>FAIR1M</provider>
+		<author>Cyber</author>
+		<pluginname>FAIR1M</pluginname>
+		<pluginclass>object detection</pluginclass>
+		<time>2021-07-21</time>
+	</research>
+	<size>
+		<width>800</width>
+		<height>600</height>
+		<depth>3</depth>
+	</size>
+	<objects>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>A330</name>
+				<probability>0.05106189101934433</probability>
+			</possibleresult>
+			<points>
+				<point>737.5375511411106,147.66342248926975</point>
+				<point>772.2515189957854,125.09643617940408</point>
+				<point>795.1307838198269,160.29077062596463</point>
+				<point>760.4168159651521,182.8577569358303</point>
+				<point>737.5375511411106,147.66342248926975</point>
+			</points>
+		</object>
+	</objects>
+</annotation>

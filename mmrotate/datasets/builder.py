@@ -1,4 +1,5 @@
 # Copyright (c) OpenMMLab. All rights reserved.
+import copy
 import platform
 
 from mmcv.utils import build_from_cfg
@@ -19,8 +20,8 @@ if platform.system() != 'Windows':
 
 
 def build_dataset(cfg, default_args=None):
-    from mmdet.datasets.dataset_wrappers import (ClassBalancedDataset,
-                                                 ConcatDataset, RepeatDataset)
+    from mmdet.datasets.dataset_wrappers import (ClassBalancedDataset, ConcatDataset,
+                                                 MultiImageMixDataset, RepeatDataset)
     if isinstance(cfg, (list, tuple)):
         dataset = ConcatDataset([build_dataset(c, default_args) for c in cfg])
     elif cfg['type'] == 'ConcatDataset':
@@ -33,6 +34,13 @@ def build_dataset(cfg, default_args=None):
     elif cfg['type'] == 'ClassBalancedDataset':
         dataset = ClassBalancedDataset(
             build_dataset(cfg['dataset'], default_args), cfg['oversample_thr'])
+    elif cfg['type'] == 'MultiImageMixDataset':
+        cp_cfg = copy.deepcopy(cfg)
+        cp_cfg['dataset'] = build_dataset(cp_cfg['dataset'])
+        cp_cfg.pop('type')
+        cp_cfg.pop('ann_file')
+        cp_cfg.pop('img_prefix')
+        dataset = MultiImageMixDataset(**cp_cfg)
     elif isinstance(cfg.get('ann_file'), (list, tuple)):
         dataset = _concat_dataset(cfg, default_args)
     else:

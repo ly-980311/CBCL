@@ -28,7 +28,7 @@ Models:
 
   - Name: oriented_rcnn_r50_fpn_1x_dota_le90
     In Collection: oriented_rcnn
-    Config: configs/cfa/oriented_rcnn_r50_fpn_1x_dota_le90.py
+    Config: configs/cfa/orcnn_r50_fpn_1x_ISPRS_3s_le90.py
     Metadata:
       Training Data: DOTAv1.0
     Results:

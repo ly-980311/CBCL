@@ -10,8 +10,8 @@ from mmdet.models.utils import build_linear_layer
 
 from mmrotate.core import build_bbox_coder, multiclass_nms_rotated
 from ...builder import ROTATED_HEADS, build_loss
-from ...dense_heads.large_batch_queue import Large_batch_queue
-from ...dense_heads.triplet_loss_batch import TripletLossbatch
+# from ...dense_heads.large_batch_queue import Large_batch_queue
+# from ...dense_heads.triplet_loss_batch import TripletLossbatch
 from ...dense_heads.large_batch_queue_classwise import Large_batch_queue_classwise
 from ...dense_heads.triplet_loss_batch_classwise import TripletLossbatch_classwise
 
@@ -341,7 +341,7 @@ class RotatedBBoxHead(BaseModule):
                 # large_batch_queue,queue_label = self.large_batch_queue(pos_feats, pos_labels)
                 # loss_batch_tri=self.loss_batch_tri(pos_feats, pos_labels,large_batch_queue,queue_label)
                 # device = pos_labelc
-                
+
                 large_batch_queue = self.large_batch_queue(pos_feats, pos_labels)
                 loss_batch_tri=self.loss_batch_tri(pos_feats, pos_labels,large_batch_queue)
 

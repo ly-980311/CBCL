@@ -18,8 +18,8 @@ def create_xml(in_dicts, out_path, img_path):
         node_source.appendChild(node_name)
     root.appendChild(node_source)
 
-    research_list = {'version': '1.0', 'provider': 'FAIR1M', 'author': 'Cyber',
-                     'pluginname': 'FAIR1M', 'pluginclass': 'object detection', 'time': '2021-07-21'}
+    research_list = {'version': '1.0', 'provider': 'Beihang', 'author': 'Yin',
+                     'pluginname': 'FAIR1M', 'pluginclass': 'object detection', 'time': '2022-04'}
     node_research = doc.createElement('research')
     for research in research_list:
         node_name = doc.createElement(research)

@@ -22,6 +22,7 @@ from .builder import ROTATED_DATASETS
 from xml.dom.minidom import Document
 from PIL import Image
 
+
 @ROTATED_DATASETS.register_module()
 class ISPRSDataset(CustomDataset):
     """DOTA dataset for detection.
@@ -32,28 +33,28 @@ class ISPRSDataset(CustomDataset):
         version (str, optional): Angle representations. Defaults to 'oc'.
         difficulty (bool, optional): The difficulty threshold of GT.
     """
-    ori_cls=('Passenger Ship', 'Motorboat', 'Fishing Boat',
-    'Tugboat', 'other-ship', 'Engineering Ship', 'Liquid Cargo Ship', 
-    'Dry Cargo Ship', 'Warship', 'Small Car', 'Bus', 'Cargo Truck', 
-    'Dump Truck', 'other-vehicle', 'Van', 'Trailer', 'Tractor', 
-    'Excavator', 'Truck Tractor', 'Boeing737', 'Boeing747', 
-    'Boeing777', 'Boeing787', 'ARJ21', 'C919', 'A220', 'A321', 
-    'A330', 'A350', 'other-airplane', 'Baseball Field', 'Basketball Court', 
-    'Football Field', 'Tennis Court', 'Roundabout', 'Intersection', 'Bridge')
+    ori_cls = ('Passenger Ship', 'Motorboat', 'Fishing Boat',
+               'Tugboat', 'other-ship', 'Engineering Ship', 'Liquid Cargo Ship',
+               'Dry Cargo Ship', 'Warship', 'Small Car', 'Bus', 'Cargo Truck',
+               'Dump Truck', 'other-vehicle', 'Van', 'Trailer', 'Tractor',
+               'Excavator', 'Truck Tractor', 'Boeing737', 'Boeing747',
+               'Boeing777', 'Boeing787', 'ARJ21', 'C919', 'A220', 'A321',
+               'A330', 'A350', 'other-airplane', 'Baseball Field', 'Basketball Court',
+               'Football Field', 'Tennis Court', 'Roundabout', 'Intersection', 'Bridge')
     
-    CLASSES = ('Passenger-Ship', 'Motorboat', 'Fishing-Boat', 
-    'Tugboat', 'other-ship', 'Engineering-Ship', 'Liquid-Cargo-Ship',
-    'Dry-Cargo-Ship', 'Warship', 'Small-Car', 'Bus', 
-    'Cargo-Truck', 'Dump-Truck', 'other-vehicle', 'Van', 
-    'Trailer', 'Tractor', 'Excavator', 'Truck-Tractor', 
-    'Boeing737', 'Boeing747', 'Boeing777', 'Boeing787', 
-    'ARJ21', 'C919', 'A220', 'A321', 'A330', 'A350', 
-    'other-airplane', 'Baseball-Field', 'Basketball-Court',
-    'Football-Field', 'Tennis-Court', 'Roundabout', 'Intersection', 'Bridge')
+    CLASSES = ('Passenger-Ship', 'Motorboat', 'Fishing-Boat',
+               'Tugboat', 'other-ship', 'Engineering-Ship', 'Liquid-Cargo-Ship',
+               'Dry-Cargo-Ship', 'Warship', 'Small-Car', 'Bus',
+               'Cargo-Truck', 'Dump-Truck', 'other-vehicle', 'Van',
+               'Trailer', 'Tractor', 'Excavator', 'Truck-Tractor',
+               'Boeing737', 'Boeing747', 'Boeing777', 'Boeing787',
+               'ARJ21', 'C919', 'A220', 'A321', 'A330', 'A350',
+               'other-airplane', 'Baseball-Field', 'Basketball-Court',
+               'Football-Field', 'Tennis-Court', 'Roundabout', 'Intersection', 'Bridge')
     
-    alias_dict={}
+    alias_dict = {}
     for i in range(len(CLASSES)):
-        alias_dict.update({CLASSES[i]:ori_cls[i]})
+        alias_dict.update({CLASSES[i]: ori_cls[i]})
 
     def __init__(self,
                  ann_file,

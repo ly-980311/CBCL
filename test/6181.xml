@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+	<source>
+		<filename>6181.tif</filename>
+		<origin>GF2/GF3</origin>
+	</source>
+	<research>
+		<version>1.0</version>
+		<provider>FAIR1M</provider>
+		<author>Cyber</author>
+		<pluginname>FAIR1M</pluginname>
+		<pluginclass>object detection</pluginclass>
+		<time>2021-07-21</time>
+	</research>
+	<size>
+		<width>800</width>
+		<height>600</height>
+		<depth>3</depth>
+	</size>
+	<objects>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>other-airplane</name>
+				<probability>0.06233137845993042</probability>
+			</possibleresult>
+			<points>
+				<point>207.40235398924307,50.62882625192205</point>
+				<point>262.04148647507964,14.412115106866455</point>
+				<point>300.5395710595851,72.49309147268733</point>
+				<point>245.90043857374852,108.70980261774292</point>
+				<point>207.40235398924307,50.62882625192205</point>
+			</points>
+		</object>
+	</objects>
+</annotation>

@@ -1,4 +1,4 @@
-_base_ = ['./oriented_rcnn_r50_fpn_1x_dota_le90.py']
+_base_ = ['./orcnn_r50_fpn_1x_ISPRS_3s_le90.py']
 
 pretrained = 'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth'  # noqa
 

@@ -16,9 +16,9 @@ model = dict(
         norm_eval=True,
         style='pytorch',
         init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50'),
-        dcn=dict(type='DCNv2', deformable_groups=1, fallback_on_stride=False),
-        stage_with_dcn=(False, True, True, True),
-        ),
+        # dcn=dict(type='DCNv2', deformable_groups=1, fallback_on_stride=False),
+        # stage_with_dcn=(False, True, True, True),
+    ),
 
     neck=dict(
         type='FPN',
@@ -157,9 +157,8 @@ test_pipeline = [
         ])
 ]
 
-data_root = '/data/wangqx/FAIR1M/split_ms/'
+data_root = '/home/wangqx/FAIR1M/split_ms/'
 dataset_type = 'ISPRSDataset'
-
 
 data = dict(
     samples_per_gpu=6,
@@ -179,8 +178,7 @@ data = dict(
         ann_file=data_root + 'test/images/',
         img_prefix=data_root + 'test/images/',
         pipeline=test_pipeline)
-    )
+)
 
-
-optimizer = dict(lr=0.02)
-work_dir = 'work_dirs/ISPRS_dcn'
+optimizer = dict(lr=0.01)
+work_dir = "work_dirs/ISPRS_3s_orcnn"

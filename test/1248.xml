@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+	<source>
+		<filename>1248.tif</filename>
+		<origin>GF2/GF3</origin>
+	</source>
+	<research>
+		<version>1.0</version>
+		<provider>FAIR1M</provider>
+		<author>Cyber</author>
+		<pluginname>FAIR1M</pluginname>
+		<pluginclass>object detection</pluginclass>
+		<time>2021-07-21</time>
+	</research>
+	<size>
+		<width>600</width>
+		<height>800</height>
+		<depth>3</depth>
+	</size>
+	<objects>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>A321</name>
+				<probability>0.05780285224318504</probability>
+			</possibleresult>
+			<points>
+				<point>528.5848120269952,795.8888840768661</point>
+				<point>597.2243448755835,732.2970317754027</point>
+				<point>662.5232201995673,802.7790846731339</point>
+				<point>593.883687350979,866.3709369745973</point>
+				<point>528.5848120269952,795.8888840768661</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>A321</name>
+				<probability>0.05357925221323967</probability>
+			</possibleresult>
+			<points>
+				<point>252.46040234199654,796.9690210637978</point>
+				<point>317.9650327110659,733.9587010537052</point>
+				<point>383.1258403337847,801.6989476862022</point>
+				<point>317.6212099647154,864.7092676962948</point>
+				<point>252.46040234199654,796.9690210637978</point>
+			</points>
+		</object>
+	</objects>
+</annotation>

@@ -153,13 +153,13 @@ test_pipeline = [
         ])
 ]
 
-data_root = '/data/wangqx/DOTA1_0/split_ms_dota1_0/'
+data_root = '../DOTA/1_0/split_ms_dota1_0/'
 dataset_type = 'DOTADataset'
 
 
 data = dict(
-    samples_per_gpu=8,
-    workers_per_gpu=8,
+    samples_per_gpu=4,
+    workers_per_gpu=4,
     train=dict(
         type=dataset_type,
         ann_file=data_root + 'trainval/annfiles/',
@@ -179,4 +179,4 @@ data = dict(
 
 
 optimizer = dict(lr=0.02)
-work_dir = 'OBB_dotatoolkit'
+work_dir = 'work_dirs/obb_dota_1_0'

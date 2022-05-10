@@ -5,6 +5,7 @@ from mmcv.cnn import ConvModule
 from mmcv.runner import force_fp32
 from mmdet.models.losses import accuracy
 from mmdet.models.utils import build_linear_layer
+import torch.nn.functional as F
 
 from ...builder import ROTATED_HEADS
 from .rotated_bbox_head import RotatedBBoxHead
@@ -203,8 +204,9 @@ class RotatedConvFCBBoxHead(RotatedBBoxHead):
 
         cls_score = self.fc_cls(x_cls) if self.with_cls else None
         bbox_pred = self.fc_reg(x_reg) if self.with_reg else None
-        return cls_score, bbox_pred
+        x = F.normalize(x)
 
+        return cls_score, bbox_pred, x
 
 @ROTATED_HEADS.register_module()
 class RotatedShared2FCBBoxHead(RotatedConvFCBBoxHead):

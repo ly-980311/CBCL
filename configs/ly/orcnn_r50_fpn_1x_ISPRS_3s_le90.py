@@ -56,7 +56,7 @@ model = dict(
             in_channels=256,
             fc_out_channels=1024,
             roi_feat_size=7,
-            num_classes=15,
+            num_classes=37,
             bbox_coder=dict(
                 type='DeltaXYWHAOBBoxCoder',
                 angle_range=angle_version,
@@ -153,8 +153,8 @@ test_pipeline = [
         ])
 ]
 
-data_root = '/home/liyan/FAIR1M/split'
-dataset_type = 'DOTADataset'
+data_root = '/home/liyan/FAIR1M/split_ms/'
+dataset_type = 'ISPRSDataset'
 
 
 data = dict(
@@ -162,13 +162,13 @@ data = dict(
     workers_per_gpu=4,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'trainval_3s/annfiles/',
-        img_prefix=data_root + 'trainval_3s/images/',
+        ann_file=data_root + 'train/annfiles/',
+        img_prefix=data_root + 'train/images/',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'trainval/annfiles/',
-        img_prefix=data_root + 'trainval/images/',
+        ann_file=data_root + 'train/annfiles/',
+        img_prefix=data_root + 'train/images/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
@@ -178,5 +178,5 @@ data = dict(
     )
 
 
-optimizer = dict(lr=0.02)
-work_dir = 'work_dirs/obb_dota_1_0'
+optimizer = dict(lr=0.01)
+# work_dir = 'work_dirs/obb_dota_1_0'
