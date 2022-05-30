@@ -17,5 +17,38 @@
 		<height>600</height>
 		<depth>3</depth>
 	</size>
-	<objects/>
+	<objects>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>A350</name>
+				<probability>0.9920822381973267</probability>
+			</possibleresult>
+			<points>
+				<point>545.3053228194867,131.80496971322293</point>
+				<point>682.3163425285204,57.32450402413661</point>
+				<point>735.7171381180133,155.55828101919894</point>
+				<point>598.7061184089796,230.03874670828526</point>
+				<point>545.3053228194867,131.80496971322293</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>other-airplane</name>
+				<probability>0.2510709762573242</probability>
+			</possibleresult>
+			<points>
+				<point>639.8513151614231,116.40685358241171</point>
+				<point>699.0162919568413,75.18305315878263</point>
+				<point>736.4001496823269,128.8368903140727</point>
+				<point>677.2351728869087,170.06069073770175</point>
+				<point>639.8513151614231,116.40685358241171</point>
+			</points>
+		</object>
+	</objects>
 </annotation>

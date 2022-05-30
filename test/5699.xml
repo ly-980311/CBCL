@@ -23,15 +23,31 @@
 			<type>rectangle</type>
 			<description>None</description>
 			<possibleresult>
-				<name>Boeing737</name>
-				<probability>0.06164199486374855</probability>
+				<name>Boeing777</name>
+				<probability>0.06015630438923836</probability>
 			</possibleresult>
 			<points>
-				<point>13.201755210727764,5.308972668991281</point>
-				<point>120.12457786569463,17.637557391904117</point>
-				<point>110.0996516496238,104.5813090082548</point>
-				<point>3.176828994656934,92.25272428534197</point>
-				<point>13.201755210727764,5.308972668991281</point>
+				<point>-24.68658850577363,-0.627338886369655</point>
+				<point>3.3305760851962987,-24.46892864578392</point>
+				<point>24.68658850577363,0.627338886369655</point>
+				<point>-3.3305760851962987,24.46892864578392</point>
+				<point>-24.68658850577363,-0.627338886369655</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>Boeing787</name>
+				<probability>0.050968870520591736</probability>
+			</possibleresult>
+			<points>
+				<point>-24.68658850577363,-0.627338886369655</point>
+				<point>3.3305760851962987,-24.46892864578392</point>
+				<point>24.68658850577363,0.627338886369655</point>
+				<point>-3.3305760851962987,24.46892864578392</point>
+				<point>-24.68658850577363,-0.627338886369655</point>
 			</points>
 		</object>
 		<object>
@@ -40,14 +56,14 @@
 			<description>None</description>
 			<possibleresult>
 				<name>other-airplane</name>
-				<probability>0.11694969981908798</probability>
+				<probability>0.052460383623838425</probability>
 			</possibleresult>
 			<points>
-				<point>118.11081287965132,642.0147875745239</point>
-				<point>161.97932317049995,636.2605468105356</point>
-				<point>167.63537242308306,679.3804760973511</point>
-				<point>123.76686213223442,685.1347168613394</point>
-				<point>118.11081287965132,642.0147875745239</point>
+				<point>-24.68658850577363,-0.627338886369655</point>
+				<point>3.3305760851962987,-24.46892864578392</point>
+				<point>24.68658850577363,0.627338886369655</point>
+				<point>-3.3305760851962987,24.46892864578392</point>
+				<point>-24.68658850577363,-0.627338886369655</point>
 			</points>
 		</object>
 	</objects>

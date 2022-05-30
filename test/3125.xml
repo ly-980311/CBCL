@@ -17,5 +17,22 @@
 		<height>600</height>
 		<depth>3</depth>
 	</size>
-	<objects/>
+	<objects>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>Boeing737</name>
+				<probability>0.055182185024023056</probability>
+			</possibleresult>
+			<points>
+				<point>520.9535619922835,205.0098754157413</point>
+				<point>529.2183910815841,209.12873399652926</point>
+				<point>523.219411640529,221.16618049246182</point>
+				<point>514.9545825512284,217.04732191167386</point>
+				<point>520.9535619922835,205.0098754157413</point>
+			</points>
+		</object>
+	</objects>
 </annotation>

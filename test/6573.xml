@@ -17,38 +17,5 @@
 		<height>600</height>
 		<depth>3</depth>
 	</size>
-	<objects>
-		<object>
-			<coordinate>pixel</coordinate>
-			<type>rectangle</type>
-			<description>None</description>
-			<possibleresult>
-				<name>A220</name>
-				<probability>0.06127282977104187</probability>
-			</possibleresult>
-			<points>
-				<point>568.68539358371,222.6008204813044</point>
-				<point>712.1301608791366,142.83750112625765</point>
-				<point>793.98257516629,290.0392552022893</point>
-				<point>650.5378078708634,369.8025745573361</point>
-				<point>568.68539358371,222.6008204813044</point>
-			</points>
-		</object>
-		<object>
-			<coordinate>pixel</coordinate>
-			<type>rectangle</type>
-			<description>None</description>
-			<possibleresult>
-				<name>other-airplane</name>
-				<probability>0.11198939383029938</probability>
-			</possibleresult>
-			<points>
-				<point>568.68539358371,222.6008204813044</point>
-				<point>712.1301608791366,142.83750112625765</point>
-				<point>793.98257516629,290.0392552022893</point>
-				<point>650.5378078708634,369.8025745573361</point>
-				<point>568.68539358371,222.6008204813044</point>
-			</points>
-		</object>
-	</objects>
+	<objects/>
 </annotation>

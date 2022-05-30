@@ -17,38 +17,5 @@
 		<height>1000</height>
 		<depth>3</depth>
 	</size>
-	<objects>
-		<object>
-			<coordinate>pixel</coordinate>
-			<type>rectangle</type>
-			<description>None</description>
-			<possibleresult>
-				<name>Boeing737</name>
-				<probability>0.28721264004707336</probability>
-			</possibleresult>
-			<points>
-				<point>314.5762236551849,944.3407633960676</point>
-				<point>379.37262338952394,967.6635906090298</point>
-				<point>360.3043915791901,1020.6397053539324</point>
-				<point>295.50799184485106,997.3168781409702</point>
-				<point>314.5762236551849,944.3407633960676</point>
-			</points>
-		</object>
-		<object>
-			<coordinate>pixel</coordinate>
-			<type>rectangle</type>
-			<description>None</description>
-			<possibleresult>
-				<name>Boeing737</name>
-				<probability>0.06171940267086029</probability>
-			</possibleresult>
-			<points>
-				<point>582.0393840090484,931.7291757254055</point>
-				<point>639.8613653616864,951.9618703934074</point>
-				<point>621.6081989987641,1004.126659235532</point>
-				<point>563.7862176461261,983.8939645675301</point>
-				<point>582.0393840090484,931.7291757254055</point>
-			</points>
-		</object>
-	</objects>
+	<objects/>
 </annotation>

@@ -17,5 +17,22 @@
 		<height>600</height>
 		<depth>3</depth>
 	</size>
-	<objects/>
+	<objects>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>A220</name>
+				<probability>0.9992973804473877</probability>
+			</possibleresult>
+			<points>
+				<point>389.5533732204515,521.2087663446259</point>
+				<point>431.69334270237675,507.38587768665906</point>
+				<point>446.2958089084548,551.9024397100616</point>
+				<point>404.1558394265295,565.7253283680284</point>
+				<point>389.5533732204515,521.2087663446259</point>
+			</points>
+		</object>
+	</objects>
 </annotation>

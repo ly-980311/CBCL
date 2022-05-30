@@ -24,14 +24,14 @@
 			<description>None</description>
 			<possibleresult>
 				<name>Boeing737</name>
-				<probability>0.08474228531122208</probability>
+				<probability>0.7853859066963196</probability>
 			</possibleresult>
 			<points>
-				<point>643.9218128882549,751.0675590071685</point>
-				<point>685.853325695238,718.8497209496409</point>
-				<point>718.7461558617451,761.6597359147065</point>
-				<point>676.814643054762,793.8775739722341</point>
-				<point>643.9218128882549,751.0675590071685</point>
+				<point>427.71321571521634,266.6410003903366</point>
+				<point>434.11028169616026,263.9456357738098</point>
+				<point>439.80839073009616,277.46929013700714</point>
+				<point>433.41132474915224,280.16465475353397</point>
+				<point>427.71321571521634,266.6410003903366</point>
 			</points>
 		</object>
 		<object>
@@ -39,15 +39,15 @@
 			<type>rectangle</type>
 			<description>None</description>
 			<possibleresult>
-				<name>A220</name>
-				<probability>0.1541939228773117</probability>
+				<name>Boeing737</name>
+				<probability>0.6987610459327698</probability>
 			</possibleresult>
 			<points>
-				<point>643.9218128882549,751.0675590071685</point>
-				<point>685.853325695238,718.8497209496409</point>
-				<point>718.7461558617451,761.6597359147065</point>
-				<point>676.814643054762,793.8775739722341</point>
-				<point>643.9218128882549,751.0675590071685</point>
+				<point>447.97061978543434,261.16825756987527</point>
+				<point>455.70286936717014,258.7382807911685</point>
+				<point>461.3238748434719,276.62446703949973</point>
+				<point>453.5916252617361,279.0544438182065</point>
+				<point>447.97061978543434,261.16825756987527</point>
 			</points>
 		</object>
 		<object>
@@ -55,15 +55,15 @@
 			<type>rectangle</type>
 			<description>None</description>
 			<possibleresult>
-				<name>A321</name>
-				<probability>0.05218084156513214</probability>
+				<name>Boeing737</name>
+				<probability>0.12829074263572693</probability>
 			</possibleresult>
 			<points>
-				<point>643.9218128882549,751.0675590071685</point>
-				<point>685.853325695238,718.8497209496409</point>
-				<point>718.7461558617451,761.6597359147065</point>
-				<point>676.814643054762,793.8775739722341</point>
-				<point>643.9218128882549,751.0675590071685</point>
+				<point>563.4023943724673,236.56340640017308</point>
+				<point>571.2492190654601,234.18412303865816</point>
+				<point>576.2819317994077,250.7818999963113</point>
+				<point>568.4351071064149,253.16118335782622</point>
+				<point>563.4023943724673,236.56340640017308</point>
 			</points>
 		</object>
 		<object>
@@ -71,15 +71,31 @@
 			<type>rectangle</type>
 			<description>None</description>
 			<possibleresult>
-				<name>other-airplane</name>
-				<probability>0.18458934128284454</probability>
+				<name>Boeing737</name>
+				<probability>0.06830843538045883</probability>
 			</possibleresult>
 			<points>
-				<point>643.9218128882549,751.0675590071685</point>
-				<point>685.853325695238,718.8497209496409</point>
-				<point>718.7461558617451,761.6597359147065</point>
-				<point>676.814643054762,793.8775739722341</point>
-				<point>643.9218128882549,751.0675590071685</point>
+				<point>434.4703028105645,262.9061367459405</point>
+				<point>442.07567697323816,261.02342451880844</point>
+				<point>446.1700780488105,277.5631015353095</point>
+				<point>438.56470388613684,279.44581376244156</point>
+				<point>434.4703028105645,262.9061367459405</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>Boeing737</name>
+				<probability>0.06456945091485977</probability>
+			</possibleresult>
+			<points>
+				<point>442.6105333823156,264.7523276340431</point>
+				<point>448.16139235535167,262.33569344925525</point>
+				<point>453.7926648598719,275.2703774440819</point>
+				<point>448.24180588683583,277.68701162886975</point>
+				<point>442.6105333823156,264.7523276340431</point>
 			</points>
 		</object>
 	</objects>

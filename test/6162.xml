@@ -17,38 +17,5 @@
 		<height>800</height>
 		<depth>3</depth>
 	</size>
-	<objects>
-		<object>
-			<coordinate>pixel</coordinate>
-			<type>rectangle</type>
-			<description>None</description>
-			<possibleresult>
-				<name>A321</name>
-				<probability>0.06151658296585083</probability>
-			</possibleresult>
-			<points>
-				<point>342.44996417561754,750.2255305446207</point>
-				<point>411.0305505992752,781.0639911165675</point>
-				<point>380.73265301188246,848.4424382053793</point>
-				<point>312.1520665882248,817.6039776334325</point>
-				<point>342.44996417561754,750.2255305446207</point>
-			</points>
-		</object>
-		<object>
-			<coordinate>pixel</coordinate>
-			<type>rectangle</type>
-			<description>None</description>
-			<possibleresult>
-				<name>other-airplane</name>
-				<probability>0.08216405659914017</probability>
-			</possibleresult>
-			<points>
-				<point>342.44996417561754,750.2255305446207</point>
-				<point>411.0305505992752,781.0639911165675</point>
-				<point>380.73265301188246,848.4424382053793</point>
-				<point>312.1520665882248,817.6039776334325</point>
-				<point>342.44996417561754,750.2255305446207</point>
-			</points>
-		</object>
-	</objects>
+	<objects/>
 </annotation>

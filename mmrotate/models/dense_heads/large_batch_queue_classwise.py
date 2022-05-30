@@ -67,7 +67,7 @@ class Large_batch_queue_classwise(nn.Module):
             feat_len (int): Length of the feature extracted by the network.
         """
         super(Large_batch_queue_classwise, self).__init__()
-        self.num_classes=37
+        self.num_classes = 37
         self.register_buffer("large_batch_queue", torch.zeros(num_classes, number_of_instance, feat_len))
         self.register_buffer("tail", torch.zeros(num_classes).long())
 

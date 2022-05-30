@@ -23,15 +23,95 @@
 			<type>rectangle</type>
 			<description>None</description>
 			<possibleresult>
-				<name>other-airplane</name>
-				<probability>0.1113022193312645</probability>
+				<name>Boeing737</name>
+				<probability>0.061219409108161926</probability>
 			</possibleresult>
 			<points>
-				<point>116.20718779030382,463.76873076606506</point>
-				<point>163.57912266587783,425.5398647222855</point>
-				<point>202.62981782493057,473.9301828081537</point>
-				<point>155.25788294935654,512.1590488519332</point>
-				<point>116.20718779030382,463.76873076606506</point>
+				<point>74.715275404654,664.1717786566915</point>
+				<point>131.6859810354204,635.2209493989917</point>
+				<point>161.284724595346,693.4666490776835</point>
+				<point>104.31401896457959,722.4174783353833</point>
+				<point>74.715275404654,664.1717786566915</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>Boeing777</name>
+				<probability>0.08289948850870132</probability>
+			</possibleresult>
+			<points>
+				<point>74.715275404654,664.1717786566915</point>
+				<point>131.6859810354204,635.2209493989917</point>
+				<point>161.284724595346,693.4666490776835</point>
+				<point>104.31401896457959,722.4174783353833</point>
+				<point>74.715275404654,664.1717786566915</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>Boeing787</name>
+				<probability>0.07606557756662369</probability>
+			</possibleresult>
+			<points>
+				<point>74.715275404654,664.1717786566915</point>
+				<point>131.6859810354204,635.2209493989917</point>
+				<point>161.284724595346,693.4666490776835</point>
+				<point>104.31401896457959,722.4174783353833</point>
+				<point>74.715275404654,664.1717786566915</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>A220</name>
+				<probability>0.07228318601846695</probability>
+			</possibleresult>
+			<points>
+				<point>74.715275404654,664.1717786566915</point>
+				<point>131.6859810354204,635.2209493989917</point>
+				<point>161.284724595346,693.4666490776835</point>
+				<point>104.31401896457959,722.4174783353833</point>
+				<point>74.715275404654,664.1717786566915</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>A330</name>
+				<probability>0.07192030549049377</probability>
+			</possibleresult>
+			<points>
+				<point>74.715275404654,664.1717786566915</point>
+				<point>131.6859810354204,635.2209493989917</point>
+				<point>161.284724595346,693.4666490776835</point>
+				<point>104.31401896457959,722.4174783353833</point>
+				<point>74.715275404654,664.1717786566915</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>A350</name>
+				<probability>0.06935475021600723</probability>
+			</possibleresult>
+			<points>
+				<point>74.715275404654,664.1717786566915</point>
+				<point>131.6859810354204,635.2209493989917</point>
+				<point>161.284724595346,693.4666490776835</point>
+				<point>104.31401896457959,722.4174783353833</point>
+				<point>74.715275404654,664.1717786566915</point>
 			</points>
 		</object>
 		<object>
@@ -40,30 +120,14 @@
 			<description>None</description>
 			<possibleresult>
 				<name>other-airplane</name>
-				<probability>0.09010230004787445</probability>
+				<probability>0.0845353752374649</probability>
 			</possibleresult>
 			<points>
-				<point>189.29019306107068,389.7012859124796</point>
-				<point>239.28832505790206,348.31284387925615</point>
-				<point>281.2148118217418,398.9609455328329</point>
-				<point>231.21667982491044,440.34938756605635</point>
-				<point>189.29019306107068,389.7012859124796</point>
-			</points>
-		</object>
-		<object>
-			<coordinate>pixel</coordinate>
-			<type>rectangle</type>
-			<description>None</description>
-			<possibleresult>
-				<name>other-airplane</name>
-				<probability>0.08171165734529495</probability>
-			</possibleresult>
-			<points>
-				<point>138.68516543774527,587.0441284043216</point>
-				<point>190.0576918071553,554.250415490224</point>
-				<point>223.3194427165516,606.356140150366</point>
-				<point>171.94691634714158,639.1498530644635</point>
-				<point>138.68516543774527,587.0441284043216</point>
+				<point>74.715275404654,664.1717786566915</point>
+				<point>131.6859810354204,635.2209493989917</point>
+				<point>161.284724595346,693.4666490776835</point>
+				<point>104.31401896457959,722.4174783353833</point>
+				<point>74.715275404654,664.1717786566915</point>
 			</points>
 		</object>
 	</objects>

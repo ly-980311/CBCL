@@ -17,38 +17,5 @@
 		<height>800</height>
 		<depth>3</depth>
 	</size>
-	<objects>
-		<object>
-			<coordinate>pixel</coordinate>
-			<type>rectangle</type>
-			<description>None</description>
-			<possibleresult>
-				<name>other-airplane</name>
-				<probability>0.08815588057041168</probability>
-			</possibleresult>
-			<points>
-				<point>10.522941190370064,640.023478042917</point>
-				<point>49.40652414574928,657.305598044535</point>
-				<point>32.687740724913134,694.9217123867705</point>
-				<point>-6.195842230466079,677.6395923851525</point>
-				<point>10.522941190370064,640.023478042917</point>
-			</points>
-		</object>
-		<object>
-			<coordinate>pixel</coordinate>
-			<type>rectangle</type>
-			<description>None</description>
-			<possibleresult>
-				<name>other-airplane</name>
-				<probability>0.07353534549474716</probability>
-			</possibleresult>
-			<points>
-				<point>620.877589827164,31.04175043903861</point>
-				<point>690.7513048780415,-13.42964179730565</point>
-				<point>735.586277360336,57.015332690844204</point>
-				<point>665.7125623094585,101.48672492718846</point>
-				<point>620.877589827164,31.04175043903861</point>
-			</points>
-		</object>
-	</objects>
+	<objects/>
 </annotation>

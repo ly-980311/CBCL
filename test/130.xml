@@ -17,38 +17,5 @@
 		<height>800</height>
 		<depth>3</depth>
 	</size>
-	<objects>
-		<object>
-			<coordinate>pixel</coordinate>
-			<type>rectangle</type>
-			<description>None</description>
-			<possibleresult>
-				<name>A220</name>
-				<probability>0.06112941354513168</probability>
-			</possibleresult>
-			<points>
-				<point>398.237330388268,730.746816544863</point>
-				<point>470.3137647985217,796.8053745534029</point>
-				<point>405.13565545157576,867.921152205137</point>
-				<point>333.0592210413221,801.8625941965971</point>
-				<point>398.237330388268,730.746816544863</point>
-			</points>
-		</object>
-		<object>
-			<coordinate>pixel</coordinate>
-			<type>rectangle</type>
-			<description>None</description>
-			<possibleresult>
-				<name>A321</name>
-				<probability>0.0569179430603981</probability>
-			</possibleresult>
-			<points>
-				<point>421.7187809071568,675.6356363755727</point>
-				<point>492.24485320713217,613.9927353123863</point>
-				<point>556.0846858897181,687.0323323744273</point>
-				<point>485.5586135897428,748.6752334376137</point>
-				<point>421.7187809071568,675.6356363755727</point>
-			</points>
-		</object>
-	</objects>
+	<objects/>
 </annotation>

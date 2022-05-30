@@ -17,5 +17,22 @@
 		<height>800</height>
 		<depth>3</depth>
 	</size>
-	<objects/>
+	<objects>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>A350</name>
+				<probability>0.0909801498055458</probability>
+			</possibleresult>
+			<points>
+				<point>504.6027876496889,508.8062569108329</point>
+				<point>598.9789021455964,568.520018900793</point>
+				<point>540.4324906706237,661.0511649641671</point>
+				<point>446.05637617471604,601.337402974207</point>
+				<point>504.6027876496889,508.8062569108329</point>
+			</points>
+		</object>
+	</objects>
 </annotation>

@@ -24,14 +24,46 @@
 			<description>None</description>
 			<possibleresult>
 				<name>Boeing737</name>
-				<probability>0.08182396739721298</probability>
+				<probability>0.06216675415635109</probability>
 			</possibleresult>
 			<points>
-				<point>218.73839231539495,665.4456792992396</point>
-				<point>298.3412563186586,624.2648351166006</point>
-				<point>336.08423952054255,697.2222894507604</point>
-				<point>256.4813755172789,738.4031336333994</point>
-				<point>218.73839231539495,665.4456792992396</point>
+				<point>-42.182064152891215,783.5709435018134</point>
+				<point>13.038164945797782,754.7783525738778</point>
+				<point>42.182064152891215,810.6723426309991</point>
+				<point>-13.038164945797782,839.4649335589347</point>
+				<point>-42.182064152891215,783.5709435018134</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>Boeing777</name>
+				<probability>0.08495258539915085</probability>
+			</possibleresult>
+			<points>
+				<point>-42.182064152891215,783.5709435018134</point>
+				<point>13.038164945797782,754.7783525738778</point>
+				<point>42.182064152891215,810.6723426309991</point>
+				<point>-13.038164945797782,839.4649335589347</point>
+				<point>-42.182064152891215,783.5709435018134</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>Boeing787</name>
+				<probability>0.0763736143708229</probability>
+			</possibleresult>
+			<points>
+				<point>-42.182064152891215,783.5709435018134</point>
+				<point>13.038164945797782,754.7783525738778</point>
+				<point>42.182064152891215,810.6723426309991</point>
+				<point>-13.038164945797782,839.4649335589347</point>
+				<point>-42.182064152891215,783.5709435018134</point>
 			</points>
 		</object>
 		<object>
@@ -40,14 +72,14 @@
 			<description>None</description>
 			<possibleresult>
 				<name>A220</name>
-				<probability>0.11802029609680176</probability>
+				<probability>0.07323148846626282</probability>
 			</possibleresult>
 			<points>
-				<point>218.73839231539495,665.4456792992396</point>
-				<point>298.3412563186586,624.2648351166006</point>
-				<point>336.08423952054255,697.2222894507604</point>
-				<point>256.4813755172789,738.4031336333994</point>
-				<point>218.73839231539495,665.4456792992396</point>
+				<point>-42.182064152891215,783.5709435018134</point>
+				<point>13.038164945797782,754.7783525738778</point>
+				<point>42.182064152891215,810.6723426309991</point>
+				<point>-13.038164945797782,839.4649335589347</point>
+				<point>-42.182064152891215,783.5709435018134</point>
 			</points>
 		</object>
 		<object>
@@ -55,15 +87,31 @@
 			<type>rectangle</type>
 			<description>None</description>
 			<possibleresult>
-				<name>A321</name>
-				<probability>0.052021197974681854</probability>
+				<name>A330</name>
+				<probability>0.07250581681728363</probability>
 			</possibleresult>
 			<points>
-				<point>218.73839231539495,665.4456792992396</point>
-				<point>298.3412563186586,624.2648351166006</point>
-				<point>336.08423952054255,697.2222894507604</point>
-				<point>256.4813755172789,738.4031336333994</point>
-				<point>218.73839231539495,665.4456792992396</point>
+				<point>-42.182064152891215,783.5709435018134</point>
+				<point>13.038164945797782,754.7783525738778</point>
+				<point>42.182064152891215,810.6723426309991</point>
+				<point>-13.038164945797782,839.4649335589347</point>
+				<point>-42.182064152891215,783.5709435018134</point>
+			</points>
+		</object>
+		<object>
+			<coordinate>pixel</coordinate>
+			<type>rectangle</type>
+			<description>None</description>
+			<possibleresult>
+				<name>A350</name>
+				<probability>0.07031914591789246</probability>
+			</possibleresult>
+			<points>
+				<point>-42.182064152891215,783.5709435018134</point>
+				<point>13.038164945797782,754.7783525738778</point>
+				<point>42.182064152891215,810.6723426309991</point>
+				<point>-13.038164945797782,839.4649335589347</point>
+				<point>-42.182064152891215,783.5709435018134</point>
 			</points>
 		</object>
 		<object>
@@ -72,14 +120,14 @@
 			<description>None</description>
 			<possibleresult>
 				<name>other-airplane</name>
-				<probability>0.2056797742843628</probability>
+				<probability>0.08530839532613754</probability>
 			</possibleresult>
 			<points>
-				<point>218.73839231539495,665.4456792992396</point>
-				<point>298.3412563186586,624.2648351166006</point>
-				<point>336.08423952054255,697.2222894507604</point>
-				<point>256.4813755172789,738.4031336333994</point>
-				<point>218.73839231539495,665.4456792992396</point>
+				<point>-42.182064152891215,783.5709435018134</point>
+				<point>13.038164945797782,754.7783525738778</point>
+				<point>42.182064152891215,810.6723426309991</point>
+				<point>-13.038164945797782,839.4649335589347</point>
+				<point>-42.182064152891215,783.5709435018134</point>
 			</points>
 		</object>
 	</objects>
