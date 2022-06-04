@@ -7,5 +7,5 @@ from .rotated_bbox_head import RotatedBBoxHead
 
 __all__ = [
     'RotatedBBoxHead', 'RotatedConvFCBBoxHead', 'RotatedShared2FCBBoxHead',
-    'GVBBoxHead', 'RotatedKFIoUShared2FCBBoxHead'
+    'GVBBoxHead', 'RotatedKFIoUShared2FCBBoxHead',
 ]

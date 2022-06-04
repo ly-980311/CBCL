@@ -47,8 +47,8 @@ class RotatedBBoxHead(BaseModule):
                  roi_feat_size=7,
                  in_channels=256,
                  num_classes=80,
-                 num_of_instance=64,
                  class_batch=True,
+                 num_of_instance=16,
                  bbox_coder=dict(
                      type='DeltaXYWHBBoxCoder',
                      clip_border=True,
@@ -74,8 +74,8 @@ class RotatedBBoxHead(BaseModule):
         self.roi_feat_area = self.roi_feat_size[0] * self.roi_feat_size[1]
         self.in_channels = in_channels
         self.num_classes = num_classes
-        self.num_of_instance = num_of_instance
         self.class_batch = class_batch
+        self.num_of_instance = num_of_instance
         self.reg_class_agnostic = reg_class_agnostic
         self.reg_decoded_bbox = reg_decoded_bbox
         self.reg_predictor_cfg = reg_predictor_cfg
@@ -122,7 +122,6 @@ class RotatedBBoxHead(BaseModule):
                     dict(
                         type='Normal', std=0.001, override=dict(name='fc_reg'))
                 ]
-
         if self.class_batch:
             self.large_batch_queue = Large_batch_queue_classwise(
                 num_classes=self.num_classes, number_of_instance=self.num_of_instance, feat_len=1024)
@@ -131,8 +130,6 @@ class RotatedBBoxHead(BaseModule):
             self.large_batch_queue = Large_batch_queue(
                 num_classes=self.num_classes, number_of_instance=self.num_of_instance, feat_len=1024)
             self.loss_batch_tri = TripletLossbatch()
-
-
 
     @property
     def custom_cls_channels(self):
@@ -200,7 +197,7 @@ class RotatedBBoxHead(BaseModule):
         # original implementation uses new_zeros since BG are set to be 0
         # now use empty & fill because BG cat_id = num_classes,
         # FG cat_id = [0, num_classes-1]
-        labels = pos_bboxes.new_full((num_samples, ),
+        labels = pos_bboxes.new_full((num_samples,),
                                      self.num_classes,
                                      dtype=torch.long)
         label_weights = pos_bboxes.new_zeros(num_samples)
@@ -332,26 +329,26 @@ class RotatedBBoxHead(BaseModule):
         if cls_score is not None:
             avg_factor = max(torch.sum(label_weights > 0).float().item(), 1.)
             if cls_score.numel() > 0:
-                
+
                 loss_cls_ = self.loss_cls(
                     cls_score,
                     labels,
                     label_weights,
                     avg_factor=avg_factor,
                     reduction_override=reduction_override)
-                
+
                 pos_feats = bbox_feats[labels != self.num_classes]
                 # pos_feats = F.normalize(pos_feats,dim=1)
                 # pos_feats = self.bn_neck(pos_feats)
                 # pos_feats = F.normalize(torch.mean(pos_feats,dim=[2,3]),dim=1)
                 pos_labels = labels[labels != self.num_classes]
 
-                # large_batch_queue,queue_label = self.large_batch_queue(pos_feats, pos_labels)
-                # loss_batch_tri=self.loss_batch_tri(pos_feats, pos_labels,large_batch_queue,queue_label)
-                # device = pos_labelc
-
-                large_batch_queue = self.large_batch_queue(pos_feats, pos_labels)
-                loss_batch_tri = self.loss_batch_tri(pos_feats, pos_labels, large_batch_queue)
+                if self.class_batch:
+                    large_batch_queue = self.large_batch_queue(pos_feats, pos_labels)
+                    loss_batch_tri = self.loss_batch_tri(pos_feats, pos_labels, large_batch_queue)
+                else:
+                    large_batch_queue, queue_label = self.large_batch_queue(pos_feats, pos_labels)
+                    loss_batch_tri = self.loss_batch_tri(pos_feats, pos_labels, large_batch_queue, queue_label)
 
                 losses['loss_triplet'] = loss_batch_tri
 
@@ -456,11 +453,12 @@ class RotatedBBoxHead(BaseModule):
         if cfg is None:
             return bboxes, scores
         else:
+
             det_bboxes, det_labels = multiclass_nms_rotated(
                 bboxes, scores, cfg.score_thr, cfg.nms, cfg.max_per_img)
             return det_bboxes, det_labels
 
-    @force_fp32(apply_to=('bbox_preds', ))
+    @force_fp32(apply_to=('bbox_preds',))
     def refine_bboxes(self, rois, labels, bbox_preds, pos_is_gts, img_metas):
         """Refine bboxes during training.
 
@@ -504,7 +502,7 @@ class RotatedBBoxHead(BaseModule):
 
         return bboxes_list
 
-    @force_fp32(apply_to=('bbox_pred', ))
+    @force_fp32(apply_to=('bbox_pred',))
     def regress_by_class(self, rois, label, bbox_pred, img_meta):
         """Regress the bbox for the predicted class. Used in Cascade R-CNN.
 

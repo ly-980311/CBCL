@@ -257,7 +257,7 @@ class RotatedStandardRoIHead(BaseModule, metaclass=ABCMeta):
                          self.bbox_head.num_classes)
             for i in range(len(det_bboxes))
         ]
-
+        
         return bbox_results
 
     def aug_test(self, x, proposal_list, img_metas, rescale=False):
@@ -349,4 +349,5 @@ class RotatedStandardRoIHead(BaseModule, metaclass=ABCMeta):
                     cfg=rcnn_test_cfg)
             det_bboxes.append(det_bbox)
             det_labels.append(det_label)
+
         return det_bboxes, det_labels

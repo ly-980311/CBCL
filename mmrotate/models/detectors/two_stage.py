@@ -179,7 +179,7 @@ class RotatedTwoStageDetector(RotatedBaseDetector):
             proposal_list = self.rpn_head.simple_test_rpn(x, img_metas)
         else:
             proposal_list = proposals
-
+        
         return self.roi_head.simple_test(
             x, proposal_list, img_metas, rescale=rescale)
 

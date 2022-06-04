@@ -63,7 +63,8 @@ class TripletLossbatch(nn.Module):
         self.margin = margin
         self.ranking_loss = nn.MarginRankingLoss(margin=margin)
         self.num_classes = num_classes
-    def forward(self, pid_features,pid_labels, large_batch_queue,batch_queue_label):
+
+    def forward(self, pid_features,pid_labels, large_batch_queue, batch_queue_label):
         """
         Does not calculate noise inputs with label -1
         Args:
@@ -72,15 +73,15 @@ class TripletLossbatch(nn.Module):
         """
         #print(inputs.shape, targets.shape)
 
-        avai_labels =[]
-        avai_features =[]
+        avai_labels = []
+        avai_features = []
         for indx, label in enumerate(torch.unique(pid_labels)):
             if label >= 0 and label<self.num_classes:
                 avai_labels.append(label)
-                avai_features.append(torch.mean(pid_features[pid_labels==label],dim=0))
+                avai_features.append(torch.mean(pid_features[pid_labels == label], dim=0))
 
-        avai_labels=torch.stack(avai_labels).cuda()
-        avai_features=torch.stack(avai_features).cuda()
+        avai_labels = torch.stack(avai_labels).cuda()
+        avai_features = torch.stack(avai_features).cuda()
         # batch_queue_label=[]
 
         # for i in range(large_batch_queue.shape[0]):
@@ -88,7 +89,7 @@ class TripletLossbatch(nn.Module):
         # batch_queue_label=torch.tensor(batch_queue_label).cuda()
         dist_mat = euclidean_dist(avai_features, large_batch_queue)
         dist_ap, dist_an = hard_example_mining(
-            dist_mat,avai_labels,batch_queue_label)
+            dist_mat, avai_labels, batch_queue_label)
         y = dist_an.new().resize_as_(dist_an).fill_(1)
 
         loss = self.ranking_loss(dist_an, dist_ap, y)

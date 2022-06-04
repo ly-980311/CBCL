@@ -252,6 +252,9 @@ class CustomDataset(Dataset):
         """
 
         img_info = self.data_infos[idx]
+        # ann_info = self.get_ann_info(idx)
+        # results = dict(img_info=img_info, ann_info=ann_info)
+
         results = dict(img_info=img_info)
         if self.proposals is not None:
             results['proposals'] = self.proposals[idx]

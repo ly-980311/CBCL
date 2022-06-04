@@ -138,6 +138,7 @@ class OrientedStandardRoIHead(RotatedStandardRoIHead):
         # split batch bbox prediction back to each image
         cls_score = bbox_results['cls_score']
         bbox_pred = bbox_results['bbox_pred']
+
         num_proposals_per_img = tuple(len(p) for p in proposals)
         rois = rois.split(num_proposals_per_img, 0)
         cls_score = cls_score.split(num_proposals_per_img, 0)
@@ -157,6 +158,7 @@ class OrientedStandardRoIHead(RotatedStandardRoIHead):
         det_bboxes = []
         det_labels = []
         for i in range(len(proposals)):
+
             det_bbox, det_label = self.bbox_head.get_bboxes(
                 rois[i],
                 cls_score[i],
@@ -167,4 +169,5 @@ class OrientedStandardRoIHead(RotatedStandardRoIHead):
                 cfg=rcnn_test_cfg)
             det_bboxes.append(det_bbox)
             det_labels.append(det_label)
+
         return det_bboxes, det_labels

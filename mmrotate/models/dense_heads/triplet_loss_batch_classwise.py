@@ -63,7 +63,8 @@ class TripletLossbatch_classwise(nn.Module):
         self.margin = margin
         self.ranking_loss = nn.MarginRankingLoss(margin=margin)
         self.num_classes = num_classes
-    def forward(self, pid_features,pid_labels, large_batch_queue):
+
+    def forward(self, pid_features, pid_labels, large_batch_queue):
         """
         Does not calculate noise inputs with label -1
         Args:

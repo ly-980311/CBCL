@@ -125,7 +125,7 @@ def test_single_stage_forward_gpu(cfg_file):
     'roi_trans/roi_trans_r50_fpn_1x_dota_le135.py',
     'roi_trans/roi_trans_r50_fpn_1x_dota_le90.py',
     'rotated_faster_rcnn/rotated_faster_rcnn_r50_fpn_1x_dota_le90.py',
-    'oriented_rcnn/orcnn_r50_fpn_1x_ISPRS_3s_le90.py'
+    'oriented_rcnn/oriented_rcnn_r50_fpn_1x_dota_le90.py'
 ])
 def test_two_stage_forward_gpu(cfg_file):
     """Test two stage forward (GPU).
