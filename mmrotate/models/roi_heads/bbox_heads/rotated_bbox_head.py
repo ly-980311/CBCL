@@ -10,6 +10,10 @@ from mmdet.models.utils import build_linear_layer
 
 from mmrotate.core import build_bbox_coder, multiclass_nms_rotated
 from ...builder import ROTATED_HEADS, build_loss
+from ...dense_heads.large_batch_queue import Large_batch_queue
+from ...dense_heads.triplet_loss_batch import TripletLossbatch
+from ...dense_heads.large_batch_queue_classwise import Large_batch_queue_classwise
+from ...dense_heads.triplet_loss_batch_classwise import TripletLossbatch_classwise
 
 
 @ROTATED_HEADS.register_module()
@@ -43,6 +47,9 @@ class RotatedBBoxHead(BaseModule):
                  roi_feat_size=7,
                  in_channels=256,
                  num_classes=80,
+                 class_batch=True,
+                 num_of_instance=16,
+                 add_triplet_loss=True,
                  bbox_coder=dict(
                      type='DeltaXYWHBBoxCoder',
                      clip_border=True,
@@ -68,6 +75,9 @@ class RotatedBBoxHead(BaseModule):
         self.roi_feat_area = self.roi_feat_size[0] * self.roi_feat_size[1]
         self.in_channels = in_channels
         self.num_classes = num_classes
+        self.class_batch = class_batch
+        self.add_triplet_loss = add_triplet_loss
+        self.num_of_instance = num_of_instance
         self.reg_class_agnostic = reg_class_agnostic
         self.reg_decoded_bbox = reg_decoded_bbox
         self.reg_predictor_cfg = reg_predictor_cfg
@@ -112,6 +122,14 @@ class RotatedBBoxHead(BaseModule):
                     dict(
                         type='Normal', std=0.001, override=dict(name='fc_reg'))
                 ]
+        if self.class_batch:
+            self.large_batch_queue = Large_batch_queue_classwise(
+                num_classes=self.num_classes, number_of_instance=self.num_of_instance, feat_len=1024)
+            self.loss_batch_tri = TripletLossbatch_classwise(num_classes=self.num_classes)
+        else:
+            self.large_batch_queue = Large_batch_queue(
+                num_classes=self.num_classes, number_of_instance=self.num_of_instance, feat_len=1024)
+            self.loss_batch_tri = TripletLossbatch()
 
     @property
     def custom_cls_channels(self):
@@ -275,6 +293,7 @@ class RotatedBBoxHead(BaseModule):
     def loss(self,
              cls_score,
              bbox_pred,
+             bbox_feats,
              rois,
              labels,
              label_weights,
@@ -315,6 +334,22 @@ class RotatedBBoxHead(BaseModule):
                     label_weights,
                     avg_factor=avg_factor,
                     reduction_override=reduction_override)
+
+                pos_feats = bbox_feats[labels != self.num_classes]
+                # pos_feats = F.normalize(pos_feats,dim=1)
+                # pos_feats = self.bn_neck(pos_feats)
+                # pos_feats = F.normalize(torch.mean(pos_feats,dim=[2,3]),dim=1)
+                pos_labels = labels[labels != self.num_classes]
+
+                if self.class_batch:
+                    large_batch_queue = self.large_batch_queue(pos_feats, pos_labels)
+                    loss_batch_tri = self.loss_batch_tri(pos_feats, pos_labels, large_batch_queue)
+                else:
+                    large_batch_queue, queue_label = self.large_batch_queue(pos_feats, pos_labels)
+                    loss_batch_tri = self.loss_batch_tri(pos_feats, pos_labels, large_batch_queue, queue_label)
+
+                if self.add_triplet_loss:
+                    losses['loss_triplet'] = loss_batch_tri
 
                 if isinstance(loss_cls_, dict):
                     losses.update(loss_cls_)
