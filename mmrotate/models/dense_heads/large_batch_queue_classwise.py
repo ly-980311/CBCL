@@ -68,7 +68,7 @@ class Large_batch_queue_classwise(nn.Module):
         """
         super(Large_batch_queue_classwise, self).__init__()
         self.num_classes = num_classes
-        self.register_buffer("large_batch_queue", torch.zeros(num_classes, number_of_instance, feat_len))
+        self.register_buffer("large_batch_queue", torch.ones(num_classes, number_of_instance, feat_len))
         self.register_buffer("tail", torch.zeros(num_classes).long())
 
     def forward(self, features, pid_labels):
@@ -91,12 +91,17 @@ class Large_batch_queue_classwise(nn.Module):
 
         with torch.no_grad():
             # for indx, label in enumerate(torch.unique(gather_pid_labels)):
-            for indx, label in enumerate(torch.unique(pid_labels)):
+            for idx, label in enumerate(pid_labels):
                 label = int(label)
                 if 0 <= label < self.num_classes:
                     # self.large_batch_queue[label,self.tail[label]] = torch.mean(gather_features[gather_pid_labels==label],dim=0)
-                    self.large_batch_queue[label, self.tail[label]] = torch.mean(features[pid_labels == label], dim=0)
-                    self.tail[label] += 1
-                    if self.tail[label] >= self.large_batch_queue.shape[1]:
-                        self.tail[label] -= self.large_batch_queue.shape[1]
+
+                    # self.large_batch_queue[label, self.tail[label]] = torch.mean(features[pid_labels == label], dim=0)
+                    # if torch.min(torch.matmul(self.large_batch_queue[label], features[idx])) > 0.2:
+                    if torch.min(torch.matmul(self.large_batch_queue[label], features[idx])) > 0:
+                        self.large_batch_queue[label, self.tail[label]] = features[idx]
+                        self.tail[label] += 1
+                        if self.tail[label] >= self.large_batch_queue.shape[1]:
+                            self.tail[label] -= self.large_batch_queue.shape[1]
+
         return self.large_batch_queue

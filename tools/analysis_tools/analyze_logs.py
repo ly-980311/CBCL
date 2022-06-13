@@ -88,7 +88,7 @@ def plot_curve(log_dicts, args):
                 plt.xlabel('iter')
                 plt.plot(
                     xs, ys, label=legend[i * num_metrics + j], linewidth=0.5)
-            plt.legend()
+            # plt.legend()
         if args.title is not None:
             plt.title(args.title)
     if args.out is None:

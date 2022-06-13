@@ -13,7 +13,7 @@ model = dict(
         out_indices=(0, 1, 2, 3),
         frozen_stages=1,
         style='pytorch',
-        # pretrained='work_dirs/pretrain/re_resnet50_c8_batch256-25b16846.pth'
+        pretrained='re_resnet50_c8_batch256-25b16846.pth'
     ),
     neck=dict(
         type='ReFPN',
