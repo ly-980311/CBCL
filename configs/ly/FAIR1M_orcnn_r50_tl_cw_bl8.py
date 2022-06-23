@@ -182,3 +182,4 @@ data = dict(
 
 optimizer = dict(lr=0.01)
 # resume_from = 'work_dirs/FAIR1M_orcnn_r50_tl_cw_bl8_airwrong/latest.pth'
+work_dir = 'work_dirs/b8_max_less_07'

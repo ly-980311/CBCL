@@ -98,7 +98,7 @@ class Large_batch_queue_classwise(nn.Module):
 
                     # self.large_batch_queue[label, self.tail[label]] = torch.mean(features[pid_labels == label], dim=0)
                     # if torch.min(torch.matmul(self.large_batch_queue[label], features[idx])) > 0.2:
-                    if torch.max(torch.matmul(self.large_batch_queue[label], features[idx])) < 0.5:
+                    if torch.max(torch.matmul(self.large_batch_queue[label], features[idx])) < 1:
                         self.large_batch_queue[label, self.tail[label]] = features[idx]
                         self.tail[label] += 1
                         if self.tail[label] >= self.large_batch_queue.shape[1]:
