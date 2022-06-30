@@ -68,7 +68,8 @@ class Large_batch_queue_classwise(nn.Module):
         """
         super(Large_batch_queue_classwise, self).__init__()
         self.num_classes = num_classes
-        self.register_buffer("large_batch_queue", torch.ones(num_classes, number_of_instance, feat_len))
+        self.number_of_instance = number_of_instance
+        self.register_buffer("large_batch_queue", torch.zeros(num_classes, number_of_instance, feat_len))
         self.register_buffer("tail", torch.zeros(num_classes).long())
 
     def forward(self, features, pid_labels):
@@ -88,20 +89,20 @@ class Large_batch_queue_classwise(nn.Module):
         #     dist.barrier()
         
         # gather_features,gather_pid_labels = undefined_l_gather(features,pid_labels)
-
         with torch.no_grad():
             # for indx, label in enumerate(torch.unique(gather_pid_labels)):
+            judge = torch.zeros(self.num_classes).long()
             for idx, label in enumerate(pid_labels):
                 label = int(label)
                 if 0 <= label < self.num_classes:
                     # self.large_batch_queue[label,self.tail[label]] = torch.mean(gather_features[gather_pid_labels==label],dim=0)
-
                     # self.large_batch_queue[label, self.tail[label]] = torch.mean(features[pid_labels == label], dim=0)
                     # if torch.min(torch.matmul(self.large_batch_queue[label], features[idx])) > 0.2:
-                    if torch.max(torch.matmul(self.large_batch_queue[label], features[idx])) < 1:
+                    if (torch.max(torch.matmul(self.large_batch_queue[label], features[idx])) < 0.7
+                        and judge[label] == 1) or judge[label] == 0:
                         self.large_batch_queue[label, self.tail[label]] = features[idx]
                         self.tail[label] += 1
                         if self.tail[label] >= self.large_batch_queue.shape[1]:
                             self.tail[label] -= self.large_batch_queue.shape[1]
-
+                            judge[label] = 1
         return self.large_batch_queue
