@@ -172,8 +172,10 @@ data = dict(
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'test/images/',
-        img_prefix=data_root + 'test/images/',
+        # ann_file=data_root + 'test/images/',
+        # img_prefix=data_root + 'test/images/',
+        ann_file='/home/liyan/FAIR1M/val/images/',
+        img_prefix='/home/liyan/FAIR1M/val/images/',
         pipeline=test_pipeline)
     )
 
