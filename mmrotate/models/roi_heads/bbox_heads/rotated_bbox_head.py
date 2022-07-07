@@ -47,9 +47,12 @@ class RotatedBBoxHead(BaseModule):
                  roi_feat_size=7,
                  in_channels=256,
                  num_classes=80,
-                 class_batch=True,
+                 # CCL
+                 class_batch=False,
                  num_of_instance=16,
-                 add_triplet_loss=True,
+                 # add_triplet_loss=True,
+                 # CCL
+
                  bbox_coder=dict(
                      type='DeltaXYWHBBoxCoder',
                      clip_border=True,
@@ -75,9 +78,12 @@ class RotatedBBoxHead(BaseModule):
         self.roi_feat_area = self.roi_feat_size[0] * self.roi_feat_size[1]
         self.in_channels = in_channels
         self.num_classes = num_classes
+        # CCL
         self.class_batch = class_batch
-        self.add_triplet_loss = add_triplet_loss
+        # self.add_triplet_loss = add_triplet_loss
         self.num_of_instance = num_of_instance
+        # CCL
+
         self.reg_class_agnostic = reg_class_agnostic
         self.reg_decoded_bbox = reg_decoded_bbox
         self.reg_predictor_cfg = reg_predictor_cfg
@@ -122,6 +128,7 @@ class RotatedBBoxHead(BaseModule):
                     dict(
                         type='Normal', std=0.001, override=dict(name='fc_reg'))
                 ]
+        # CCL
         if self.class_batch:
             self.large_batch_queue = Large_batch_queue_classwise(
                 num_classes=self.num_classes, number_of_instance=self.num_of_instance, feat_len=1024)
@@ -130,6 +137,7 @@ class RotatedBBoxHead(BaseModule):
             self.large_batch_queue = Large_batch_queue(
                 num_classes=self.num_classes, number_of_instance=self.num_of_instance, feat_len=1024)
             self.loss_batch_tri = TripletLossbatch()
+        # CCL
 
     @property
     def custom_cls_channels(self):
@@ -335,6 +343,7 @@ class RotatedBBoxHead(BaseModule):
                     avg_factor=avg_factor,
                     reduction_override=reduction_override)
 
+                # CCL
                 pos_feats = bbox_feats[labels != self.num_classes]
                 # pos_feats = F.normalize(pos_feats,dim=1)
                 # pos_feats = self.bn_neck(pos_feats)
@@ -348,8 +357,9 @@ class RotatedBBoxHead(BaseModule):
                     large_batch_queue, queue_label = self.large_batch_queue(pos_feats, pos_labels)
                     loss_batch_tri = self.loss_batch_tri(pos_feats, pos_labels, large_batch_queue, queue_label)
 
-                if self.add_triplet_loss:
-                    losses['loss_triplet'] = loss_batch_tri
+                # if self.add_triplet_loss:
+                losses['loss_triplet'] = loss_batch_tri
+                # CCL
 
                 if isinstance(loss_cls_, dict):
                     losses.update(loss_cls_)

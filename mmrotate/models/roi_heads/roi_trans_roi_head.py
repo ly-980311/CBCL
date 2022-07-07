@@ -125,7 +125,11 @@ class RoITransRoIHead(BaseModule, metaclass=ABCMeta):
         bbox_feats = bbox_roi_extractor(x[:bbox_roi_extractor.num_inputs],
                                         rois)
         # do not support caffe_c4 model anymore
-        cls_score, bbox_pred = bbox_head(bbox_feats)
+        # import pdb
+        # pdb.set_trace()
+        # cls_score, bbox_pred = bbox_head(bbox_feats)  # edit
+        cls_score = bbox_head(bbox_feats)[0]
+        bbox_pred = bbox_head(bbox_feats)[1]
 
         bbox_results = dict(
             cls_score=cls_score, bbox_pred=bbox_pred, bbox_feats=bbox_feats)
@@ -156,7 +160,9 @@ class RoITransRoIHead(BaseModule, metaclass=ABCMeta):
         bbox_targets = self.bbox_head[stage].get_targets(
             sampling_results, gt_bboxes, gt_labels, rcnn_train_cfg)
         loss_bbox = self.bbox_head[stage].loss(bbox_results['cls_score'],
-                                               bbox_results['bbox_pred'], rois,
+                                               bbox_results['bbox_pred'],
+                                               bbox_results['bbox_feats'],  # add
+                                               rois,
                                                *bbox_targets)
 
         bbox_results.update(

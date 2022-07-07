@@ -1,3 +1,4 @@
+# attention 296 297
 # Copyright (c) OpenMMLab. All rights reserved.
 import glob
 import os
@@ -292,7 +293,8 @@ class ISPRSDataset(CustomDataset):
             node_research.appendChild(node_name)
         root.appendChild(node_research)
 
-        img = Image.open(os.path.join('../FAIR1M/test/images',img_id+'.tif'))
+        img = Image.open(os.path.join('../FAIR1M/test/images', img_id+'.tif'))
+        # img = Image.open(os.path.join('../FAIR1M/mini-val/images', img_id+'.tif'))
         size_list = {'width': str(img.size[0]), 'height': str(img.size[1]), 'depth': '3'}
         node_size = doc.createElement('size')
         for size in size_list:

@@ -26,7 +26,7 @@ model = dict(
         num_outs=5),
     bbox_head=dict(
         type='RotatedRetinaHead',
-        num_classes=15,
+        num_classes=37,
         in_channels=256,
         stacked_convs=4,
         feat_channels=256,
@@ -56,7 +56,7 @@ model = dict(
     refine_heads=[
         dict(
             type='RotatedRetinaRefineHead',
-            num_classes=15,
+            num_classes=37,
             in_channels=256,
             stacked_convs=4,
             feat_channels=256,
