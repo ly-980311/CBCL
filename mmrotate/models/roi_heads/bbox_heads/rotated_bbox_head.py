@@ -10,10 +10,10 @@ from mmdet.models.utils import build_linear_layer
 
 from mmrotate.core import build_bbox_coder, multiclass_nms_rotated
 from ...builder import ROTATED_HEADS, build_loss
-from ...dense_heads.large_batch_queue import Large_batch_queue
-from ...dense_heads.triplet_loss_batch import TripletLossbatch
-from ...dense_heads.large_batch_queue_classwise import Large_batch_queue_classwise
-from ...dense_heads.triplet_loss_batch_classwise import TripletLossbatch_classwise
+from ..CBCL.large_batch_queue import Large_batch_queue
+from ..CBCL.triplet_loss_batch import TripletLossbatch
+from ..CBCL.large_batch_queue_classwise import Large_batch_queue_classwise
+from ..CBCL.triplet_loss_batch_classwise import TripletLossbatch_classwise
 
 
 @ROTATED_HEADS.register_module()
