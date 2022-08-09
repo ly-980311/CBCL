@@ -170,7 +170,7 @@ class RotatedStandardRoIHead(BaseModule, metaclass=ABCMeta):
             x[:self.bbox_roi_extractor.num_inputs], rois)
         if self.with_shared_head:
             bbox_feats = self.shared_head(bbox_feats)
-        cls_score, bbox_pred, bbox_feats = self.bbox_head(bbox_feats)
+        cls_score, bbox_pred, bbox_feats = self.bbox_head(bbox_feats) 
 
         bbox_results = dict(
             cls_score=cls_score, bbox_pred=bbox_pred, bbox_feats=bbox_feats)
@@ -194,7 +194,8 @@ class RotatedStandardRoIHead(BaseModule, metaclass=ABCMeta):
             dict[str, Tensor]: a dictionary of bbox_results.
         """
         rois = bbox2roi([res.bboxes for res in sampling_results])
-        bbox_results = self._bbox_forward(x, rois)
+
+        bbox_results = self._bbox_forward(x, rois) 
 
         bbox_targets = self.bbox_head.get_targets(sampling_results, gt_bboxes,
                                                   gt_labels, self.train_cfg)

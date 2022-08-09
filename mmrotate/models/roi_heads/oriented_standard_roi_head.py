@@ -94,11 +94,15 @@ class OrientedStandardRoIHead(RotatedStandardRoIHead):
             dict[str, Tensor]: a dictionary of bbox_results.
         """
         rois = rbbox2roi([res.bboxes for res in sampling_results])
-        bbox_results = self._bbox_forward(x, rois)
 
+        bbox_results = self._bbox_forward(x, rois)  ## x:tuple(x[0]:batch size*C*h*w,FPN level 0 feature map),  父类rotate_standard_roi_head方法, 其实里面还是self.bbox_head的forward
+        
         bbox_targets = self.bbox_head.get_targets(sampling_results, gt_bboxes,
                                                   gt_labels, self.train_cfg)
-        loss_bbox = self.bbox_head.loss(bbox_results['cls_score'],  bbox_results['bbox_pred'], bbox_results['bbox_feats'],
+        ## CCL
+        loss_bbox = self.bbox_head.loss(bbox_results['cls_score'],
+                                        bbox_results['bbox_pred'],
+                                        bbox_results['bbox_feats'],
                                         rois,
                                         *bbox_targets)
 

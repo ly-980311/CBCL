@@ -124,15 +124,18 @@ class RoITransRoIHead(BaseModule, metaclass=ABCMeta):
         bbox_head = self.bbox_head[stage]
         bbox_feats = bbox_roi_extractor(x[:bbox_roi_extractor.num_inputs],
                                         rois)
+                                    
         # do not support caffe_c4 model anymore
-        # import pdb
-        # pdb.set_trace()
+
         # cls_score, bbox_pred = bbox_head(bbox_feats)  # edit
-        cls_score = bbox_head(bbox_feats)[0]
-        bbox_pred = bbox_head(bbox_feats)[1]
+        # cls_score = bbox_head(bbox_feats)[0]
+        # bbox_pred = bbox_head(bbox_feats)[1]
+
+        cls_score, bbox_pred, bbox_feats = bbox_head(bbox_feats) 
 
         bbox_results = dict(
             cls_score=cls_score, bbox_pred=bbox_pred, bbox_feats=bbox_feats)
+
         return bbox_results
 
     def _bbox_forward_train(self, stage, x, sampling_results, gt_bboxes,

@@ -11,6 +11,10 @@ from mmdet.models.utils import build_linear_layer
 from mmrotate.core import (build_bbox_coder, hbb2obb, multiclass_nms_rotated,
                            obb2xyxy)
 from ...builder import ROTATED_HEADS, build_loss
+from ...dense_heads.large_batch_queue import Large_batch_queue
+from ...dense_heads.triplet_loss_batch import TripletLossbatch
+from ...dense_heads.large_batch_queue_classwise import Large_batch_queue_classwise
+from ...dense_heads.triplet_loss_batch_classwise import TripletLossbatch_classwise
 
 
 @ROTATED_HEADS.register_module()
@@ -52,6 +56,12 @@ class GVBBoxHead(BaseModule):
             in_channels=256,
             fc_out_channels=1024,
             num_classes=80,
+            # CCL
+            class_batch=False,
+            num_of_instance=16,
+            margin=0.3,
+            selection=0.7,
+            # CCL
             ratio_thr=0.8,
             bbox_coder=dict(
                 type='DeltaXYWHBBoxCoder',
@@ -81,6 +91,13 @@ class GVBBoxHead(BaseModule):
         self.in_channels = in_channels
         self.fc_out_channels = fc_out_channels
         self.num_classes = num_classes
+        # CCL
+        self.class_batch = class_batch
+        self.num_of_instance = num_of_instance
+        self.margin = margin
+        self.selection = selection
+        # CCL
+
         self.reg_class_agnostic = reg_class_agnostic
         self.ratio_thr = ratio_thr
         self.reg_decoded_bbox = reg_decoded_bbox
@@ -151,6 +168,20 @@ class GVBBoxHead(BaseModule):
             self.init_cfg += [
                 dict(type='Normal', std=0.001, override=dict(name='fc_ratio'))
             ]
+        # CCL
+        if self.class_batch:
+            self.large_batch_queue = Large_batch_queue_classwise(num_classes=self.num_classes,
+                                                                 number_of_instance=self.num_of_instance,
+                                                                 selection=self.selection,
+                                                                 feat_len=1024)
+            self.loss_batch_tri = TripletLossbatch_classwise(margin=self.margin, num_classes=self.num_classes)
+        else:
+            self.large_batch_queue = Large_batch_queue(num_classes=self.num_classes,
+                                                       number_of_instance=self.num_of_instance,
+                                                       selection=self.selection,
+                                                       feat_len=1024)
+            self.loss_batch_tri = TripletLossbatch(margin=self.margin)
+        # CCL
 
     @property
     def custom_cls_channels(self):
@@ -181,7 +212,8 @@ class GVBBoxHead(BaseModule):
         bbox_pred = self.fc_reg(x)
         fix_pred = torch.sigmoid(self.fc_fix(x))
         ratio_pred = torch.sigmoid(self.fc_ratio(x))
-        return cls_score, bbox_pred, fix_pred, ratio_pred
+        x = F.normalize(x)  # CCL
+        return cls_score, bbox_pred, fix_pred, ratio_pred, x  # CCL
 
     def _get_target_single(self, pos_bboxes, neg_bboxes, pos_gt_bboxes,
                            pos_gt_labels, cfg):
@@ -343,6 +375,7 @@ class GVBBoxHead(BaseModule):
              bbox_pred,
              fix_pred,
              ratio_pred,
+             bbox_feats,
              rois,
              labels,
              label_weights,
@@ -402,6 +435,24 @@ class GVBBoxHead(BaseModule):
                     label_weights,
                     avg_factor=avg_factor,
                     reduction_override=reduction_override)
+
+                # CCL
+                pos_feats = bbox_feats[labels != self.num_classes]
+                # pos_feats = F.normalize(pos_feats,dim=1)
+                # pos_feats = self.bn_neck(pos_feats)
+                # pos_feats = F.normalize(torch.mean(pos_feats,dim=[2,3]),dim=1)
+                pos_labels = labels[labels != self.num_classes]
+
+                if self.class_batch:
+                    large_batch_queue = self.large_batch_queue(pos_feats, pos_labels)
+                    loss_batch_tri = self.loss_batch_tri(pos_feats, pos_labels, large_batch_queue)
+                else:
+                    large_batch_queue, queue_label = self.large_batch_queue(pos_feats, pos_labels)
+                    loss_batch_tri = self.loss_batch_tri(pos_feats, pos_labels, large_batch_queue, queue_label)
+
+                losses['loss_triplet'] = loss_batch_tri
+                # CCL
+
                 if isinstance(loss_cls_, dict):
                     losses.update(loss_cls_)
                 else:
@@ -588,7 +639,7 @@ class GVBBoxHead(BaseModule):
 
         return bboxes_list
 
-    @force_fp32(apply_to=('bbox_pred', ))
+    @force_fp32(apply_to=('bbox_pred',))
     def regress_by_class(self, rois, label, bbox_pred, img_meta):
         """Regress the bbox for the predicted class. Used in Cascade R-CNN.
 

@@ -44,7 +44,9 @@ class GVRatioRoIHead(RotatedStandardRoIHead):
             x[:self.bbox_roi_extractor.num_inputs], rois)
         if self.with_shared_head:
             bbox_feats = self.shared_head(bbox_feats)
-        cls_score, bbox_pred, fix_pred, ratio_pred = self.bbox_head(bbox_feats)
+        # CCL
+        cls_score, bbox_pred, fix_pred, ratio_pred, bbox_feats = self.bbox_head(bbox_feats)
+        # cls_score, bbox_pred, fix_pred, ratio_pred = self.bbox_head(bbox_feats)
 
         bbox_results = dict(
             cls_score=cls_score,
@@ -79,7 +81,9 @@ class GVRatioRoIHead(RotatedStandardRoIHead):
         loss_bbox = self.bbox_head.loss(bbox_results['cls_score'],
                                         bbox_results['bbox_pred'],
                                         bbox_results['fix_pred'],
-                                        bbox_results['ratio_pred'], rois,
+                                        bbox_results['ratio_pred'],
+                                        bbox_results['bbox_feats'],  # CCL
+                                        rois,
                                         *bbox_targets)
 
         bbox_results.update(loss_bbox=loss_bbox)

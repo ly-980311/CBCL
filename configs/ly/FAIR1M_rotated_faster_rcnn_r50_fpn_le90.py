@@ -154,3 +154,4 @@ data = dict(
     )
 
 optimizer = dict(lr=0.005)
+work_dir = 'work_dirs/compare_rotated_faster_rcnn_ori'

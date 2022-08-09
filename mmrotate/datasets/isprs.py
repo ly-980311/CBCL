@@ -4,6 +4,7 @@ import glob
 import os
 import os.path as osp
 import re
+import shutil
 import tempfile
 import time
 from venv import create
@@ -362,6 +363,9 @@ class ISPRSDataset(CustomDataset):
             out_folder (str, optional): Folder of submission.
         """
         if not osp.exists(out_folder):
+            os.makedirs(out_folder)
+        else:  # add
+            shutil.rmtree(out_folder)
             os.makedirs(out_folder)
 
         for img_id, dets_per_cls in zip(id_list, dets_list):

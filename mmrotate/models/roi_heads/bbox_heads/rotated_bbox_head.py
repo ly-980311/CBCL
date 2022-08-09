@@ -49,8 +49,9 @@ class RotatedBBoxHead(BaseModule):
                  num_classes=80,
                  # CCL
                  class_batch=False,
-                 num_of_instance=16,
-                 # add_triplet_loss=True,
+                 num_of_instance=32,
+                 margin=0.3,
+                 selection=0.7,
                  # CCL
 
                  bbox_coder=dict(
@@ -80,8 +81,9 @@ class RotatedBBoxHead(BaseModule):
         self.num_classes = num_classes
         # CCL
         self.class_batch = class_batch
-        # self.add_triplet_loss = add_triplet_loss
         self.num_of_instance = num_of_instance
+        self.margin = margin
+        self.selection = selection
         # CCL
 
         self.reg_class_agnostic = reg_class_agnostic
@@ -130,13 +132,17 @@ class RotatedBBoxHead(BaseModule):
                 ]
         # CCL
         if self.class_batch:
-            self.large_batch_queue = Large_batch_queue_classwise(
-                num_classes=self.num_classes, number_of_instance=self.num_of_instance, feat_len=1024)
-            self.loss_batch_tri = TripletLossbatch_classwise(num_classes=self.num_classes)
+            self.large_batch_queue = Large_batch_queue_classwise(num_classes=self.num_classes,
+                                                                 number_of_instance=self.num_of_instance,
+                                                                 selection=self.selection,
+                                                                 feat_len=1024)
+            self.loss_batch_tri = TripletLossbatch_classwise(margin=self.margin, num_classes=self.num_classes)
         else:
-            self.large_batch_queue = Large_batch_queue(
-                num_classes=self.num_classes, number_of_instance=self.num_of_instance, feat_len=1024)
-            self.loss_batch_tri = TripletLossbatch()
+            self.large_batch_queue = Large_batch_queue(num_classes=self.num_classes,
+                                                       number_of_instance=self.num_of_instance,
+                                                       selection=self.selection,
+                                                       feat_len=1024)
+            self.loss_batch_tri = TripletLossbatch(margin=self.margin)
         # CCL
 
     @property
@@ -357,7 +363,6 @@ class RotatedBBoxHead(BaseModule):
                     large_batch_queue, queue_label = self.large_batch_queue(pos_feats, pos_labels)
                     loss_batch_tri = self.loss_batch_tri(pos_feats, pos_labels, large_batch_queue, queue_label)
 
-                # if self.add_triplet_loss:
                 losses['loss_triplet'] = loss_batch_tri
                 # CCL
 

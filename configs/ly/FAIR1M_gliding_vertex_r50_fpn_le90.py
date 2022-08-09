@@ -55,6 +55,7 @@ model = dict(
             fc_out_channels=1024,
             roi_feat_size=7,
             num_classes=37,
+            class_batch=True,
             ratio_thr=0.8,
             bbox_coder=dict(
                 type='DeltaXYWHBBoxCoder',
@@ -162,3 +163,4 @@ data = dict(
     )
 
 optimizer = dict(lr=0.005)
+work_dir = 'work_dirs/compare_gliding_vertex_cbcl'

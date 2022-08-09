@@ -153,7 +153,7 @@ test_pipeline = [
         ])
 ]
 
-data_root = '/home/liyan/FAIR1M/split_ms/'
+data_root = '/home/wangqx/FAIR1M/split_ms/'
 dataset_type = 'ISPRSDataset'
 
 
@@ -179,4 +179,5 @@ data = dict(
 
 
 optimizer = dict(lr=0.01)
-# work_dir = 'work_dirs/obb_dota_1_0'
+checkpoint_config = dict(interval=1)
+work_dir = 'work_dirs/FAIR1M_orcnn'

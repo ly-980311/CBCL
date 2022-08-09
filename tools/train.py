@@ -184,6 +184,7 @@ def main():
         validate=(not args.no_validate),
         timestamp=timestamp,
         meta=meta)
+    print('work directory: ' + cfg.work_dir)  # add
 
 
 if __name__ == '__main__':
