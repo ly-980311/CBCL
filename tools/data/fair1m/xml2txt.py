@@ -67,9 +67,9 @@ class GetAnns(xml.sax.ContentHandler):
 
 
 if __name__ == '__main__':
-    xml_path = '/home/liyan/FAIR1M/part2/labelXml/'
-    save_path = '/home/liyan/FAIR1M/part2/ann_txt/'
-    log_txt = '/home/liyan/FAIR1M/part2/annotations_log.txt'
+    xml_path = '../FAIR1M/part2/labelXml/'
+    save_path = '../FAIR1M/part2/ann_txt/'
+    log_txt = '../FAIR1M/part2/annotations_log.txt'
     xml_list = os.listdir(xml_path)
     if not os.path.exists(save_path):
         os.makedirs(save_path)

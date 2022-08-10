@@ -53,9 +53,9 @@ dataset_classes = {
 }
 
 dataset_aliases = {
-    'DOTA1_0': product(['dota', 'DOTA'], ['', '1', '1.0', '1_0']),
-    'DOTA1_5': product(['dota', 'DOTA'], ['1.5', '1_5']),
-    'DOTA2_0': product(['dota', 'DOTA'], ['2', '2.0', '2_0']),
+    'DOTA1_0': product(['fair1m', 'DOTA'], ['', '1', '1.0', '1_0']),
+    'DOTA1_5': product(['fair1m', 'DOTA'], ['1.5', '1_5']),
+    'DOTA2_0': product(['fair1m', 'DOTA'], ['2', '2.0', '2_0']),
     'DIOR': ['dior', 'DIOR'],
     'HRSC': product(['hrsc', 'HRSC'], ['', '2016']),
     'HRSC_cls': product(['hrsc', 'HRSC'], ['_cls', '2016_cls']),

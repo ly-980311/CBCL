@@ -22,7 +22,7 @@ for json_name in os.listdir(json_dir):
             y3 = str(int(json_data[i]['points'][2][1]))+' '
             x4 = str(int(json_data[i]['points'][3][0]))+' '
             y4 = str(int(json_data[i]['points'][3][1]))+' '
-            label=json_data[i]['label'].replace(' ','-')+' '
-            diff='0'
-            write_str=x1+y1+x2+y2+x3+y3+x4+y4+label+diff
+            label = json_data[i]['label'].replace(' ', '-')+' '
+            diff = '0'
+            write_str = x1+y1+x2+y2+x3+y3+x4+y4+label+diff
             f.write(write_str+'\n')
