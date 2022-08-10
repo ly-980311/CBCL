@@ -6,7 +6,7 @@ Airplane detection and fine-grained recognition in remote sensing images are cha
 
 The overview of our method is shown as follow:
 <div align="center">
-  <img src="resources/fig-CBCL.png" width="600"/>
+  <img src="resources/fig-CBCL.png" width="1280"/>
 </div>
 
 The trained model can be found at the [BaiduYun](https://pan.baidu.com/s/1RjT67g7ehq5NJpC3-Bw6iA) (password: fei6), and the corresponding config is [orcnn_cbcl.py](configs/cbcl/orcnn_cbcl.py).
