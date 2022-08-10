@@ -38,7 +38,7 @@ python tools/data/fair1m/split/img_split.py --base-json tools/data/fair1m/split/
 ```shell
 CUDA_VISIBLE_DEVICES={gpu_id} bash tools/dist_train.sh {config_path} {gpu_number}
 ```
-3.Test
+3. Test
 ```shell
 CUDA_VISIBLE_DEVICES={gpu_id} bash tools/dist_test.sh {config_path} {checkpoint_path} {gpu_num}
 ```
