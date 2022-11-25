@@ -13,7 +13,7 @@ The trained model can be found at the [BaiduYun](https://pan.baidu.com/s/1RjT67g
 
 ## Installation
 
-This project is developed upon [MMRotate](https://github.com/open-mmlab/mmrotate), please refer to [install.md](docs/en/install.md) to install MMRotate.
+This project is developed upon [MMRotate](https://github.com/open-mmlab/mmrotate), please refer to [install.md](https://github.com/open-mmlab/mmrotate) to install MMRotate.
 
 We utilized mmcv-full = 1.4.8, torch = 1.9.1+cu111
 ## Dataset
